@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap");
+
+body {
+  // background-image: url("https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2106&q=80");
+  // background-size: cover;
+  // background-position: center;
+  // background-attachment: fixed;
+  font-family: "Josefin Sans", sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  margin: 0;
+  padding: 0;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+* {
+  -moz-box-sizing: border-box; /* Firexfox */
+  -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+  box-sizing: border-box; /* IE */
+}
