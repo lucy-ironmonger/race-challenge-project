@@ -1,9 +1,11 @@
 import React from "react";
 import "../styles/SelectAChallenge.scss";
+import Navbar from "./NavBar";
 
 const SelectAChallenge = ({ savedChallenge, setSavedChallenge }) => {
   return (
     <div>
+      <Navbar />
       <h1 className="header">Select a challenge below</h1>
       <div className="john-o-groats">
         <h2>Land's end to John o' Groats</h2>

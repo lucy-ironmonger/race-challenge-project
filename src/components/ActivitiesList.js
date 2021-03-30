@@ -8,6 +8,7 @@ import averagePaceMph from "../controllers/averagePaceMph";
 import averagePaceKm from "../controllers/averagePaceKm";
 import "../styles/ActivitiesList.scss";
 import { getAccessToken } from "../tokenService";
+import Navbar from "./NavBar";
 
 const ActivitiesList = ({ loggedIn }) => {
   const [isOn, toggleIsOn] = UseToggle();
@@ -44,6 +45,7 @@ const ActivitiesList = ({ loggedIn }) => {
 
   return (
     <div>
+      <Navbar />
       <div className="activities-list_button_container">
         <button
           className="activities-list_button_distance_metric"

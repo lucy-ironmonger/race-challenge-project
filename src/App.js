@@ -30,9 +30,7 @@ const App = () => {
 
   return (
     <>
-      <Login />
       <Router>
-        <NavBar className="nav-bar" />
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/exchange_token">
