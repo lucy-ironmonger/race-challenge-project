@@ -6,7 +6,7 @@ import ExchangeToken from "./components/ExchangeToken";
 import NavBar from "./components/NavBar";
 import ActivitiesList from "./components/ActivitiesList";
 import { getAccessToken } from "./tokenService";
-
+import SelectAChallenge from "./components/SelectAChallenge";
 // APP
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
