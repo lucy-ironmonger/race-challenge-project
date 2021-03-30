@@ -27,9 +27,9 @@ const ActivitiesList = ({ loggedIn }) => {
         return;
       }
       const runData = await fetchActivities(accessToken);
-      // if (!runData) {
-      // throw new Error("Belly is gonna get you - get running!!");
-      // }
+      if (!runData) {
+        console.log("Belly is gonna get you - get running!!");
+      }
       setActivities(runData);
     };
     // ACTUAL USEEFFECT - THIS IS ONLY CALLED IF YOU ARE LOGGED IN

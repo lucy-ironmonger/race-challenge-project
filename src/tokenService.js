@@ -38,7 +38,6 @@ function isAccessTokenInLocal() {
 
 //
 async function refreshAccessToken(refreshToken) {
-  console.log(process.env.REACT_APP_CLIENT_ID);
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -72,15 +71,11 @@ export async function setTokensFromStrava(authCode) {
     {}
   );
 
-
   if (res.data.expires_at && res.data.access_token && res.data.refresh_token) {
-
     window.localStorage.setItem(EXPIRES_AT_KEY, res.data.expires_at);
     window.localStorage.setItem(ACCESS_TOKEN_KEY, res.data.access_token);
     window.localStorage.setItem(REFRESH_TOKEN_KEY, res.data.refresh_token);
   } else {
-
     throw new Error("Could not log into Strava!");
   }
-
 }
