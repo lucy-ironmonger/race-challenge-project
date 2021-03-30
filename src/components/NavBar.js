@@ -1,40 +1,79 @@
-import React from "react";
-import "../styles/NavBar.scss";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
-const NavBar = () => {
+import { Link } from "react-router-dom";
+import "../styles/NavBar.scss";
+
+function Navbar() {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+  const [navbar, setNavBar] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener("resize", showButton);
+
+  const changeBackground = () => {
+    if (window.scrollY >= 80) {
+      setNavBar(true);
+    } else {
+      setNavBar(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeBackground);
+
   return (
-    <header className="navbar">
-      <nav>
-        <div className="navbar_imageContainer">
-          <div id="heroimg">
-            <img
-              src="https://www.logolynx.com/images/logolynx/e3/e3984faa44107f504f6d8dc6a3d5777e.png"
-              alt="race-challenge-logo"
-              to="/"
-            />
+    <>
+      <nav className={navbar ? "navbar active" : "navbar"}>
+        <div className="navbar-container">
+          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}></Link>
+          <div className="menu-icon" onClick={handleClick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-        </div>
-        <ul className="navbar_links">
-          <li className="navbar_links-item">
-            <Link className="item" to="/challenges">
-              Challenges
-            </Link>
-            <li className="navbar_links-item">
-              <Link className="item" to="/">
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                 Race Challenge
               </Link>
             </li>
-          </li>
-          <li className="navbar_links-item">
-            <Link className="item" to="/activities">
-              Activities
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-};
+            <li className="nav-item">
+              <Link
+                to="/services"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Activities
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/products"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Challenges
+              </Link>
+            </li>
 
-export default NavBar;
+            <li></li>
+          </ul>
+        </div>
+      </nav>
+    </>
+  );
+}
+
+export default Navbar;

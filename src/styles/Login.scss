@@ -5,7 +5,7 @@ $appfont: "Josefin Sans", cursive;
 $bgcolor: rgb(247, 240, 240);
 // BACKGROUND
 body {
-  // background-image: url("https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2106&q=80");
+  background-image: url("https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2106&q=80");
   // background-size: cover;
   // background-position: center;
   // background-attachment: fixed;
@@ -39,12 +39,16 @@ h4 {
 }
 
 .typewriter h4 {
+  width: auto;
+  display: inline-block;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.25em solid $appcolor; /* The typwriter cursor */
+  border-right: 0.15em solid $appcolor; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.11em; /* Adjust as needed */
-  animation: typing 5.5s steps(40, end);
+  margin: auto 0; /* Gives that scrolling effect as the typing happens */
+  margin-right: auto;
+  margin-left: auto;
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 4.5s steps(70, end);
 }
 
 div.typewriter {
@@ -54,10 +58,10 @@ div.typewriter {
 /* The typing effect */
 @keyframes typing {
   from {
-    width: 0;
+    max-width: 0;
   }
   to {
-    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -67,7 +71,7 @@ div.typewriter {
   to {
     border-color: transparent;
   }
-  50% {
+  80% {
     border-color: $appcolor;
   }
 }

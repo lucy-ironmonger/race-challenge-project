@@ -30,6 +30,7 @@ const App = () => {
 
   return (
     <>
+      <Login />
       <Router>
         <NavBar className="nav-bar" />
         <Route path="/" exact component={Home} />
