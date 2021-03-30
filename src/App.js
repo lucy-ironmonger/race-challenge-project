@@ -10,6 +10,7 @@ import { getAccessToken } from "./tokenService";
 // APP
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [savedChallenge, setSavedChallenge] = useState();
 
   useEffect(() => {
     const accessTokenCheck = async () => {
@@ -39,6 +40,16 @@ const App = () => {
         <Route path="/activities">
           <ActivitiesList className="activities-list" loggedIn={loggedIn} />
         </Route>
+        <Route
+          exact
+          path="/challenges"
+          render={() => (
+            <SelectAChallenge
+              savedChallenge={savedChallenge}
+              setSavedChallenge={setSavedChallenge}
+            />
+          )}
+        />
       </Router>
     </>
   );

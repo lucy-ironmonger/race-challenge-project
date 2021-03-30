@@ -1,0 +1,46 @@
+.header {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.john-o-groats,
+.channel-tunnel,
+.m1,
+.grand-canyon,
+.hadrians-wall {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+  color: black;
+  font-size: 3vmin;
+  width: 25em;
+  margin: auto;
+  margin-bottom: 5%;
+  padding: 1em;
+  background: white;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
+  backdrop-filter: blur(15.5px);
+  -webkit-backdrop-filter: blur(15.5px);
+  border-radius: 1em;
+  text-align: center;
+}
+
+.john-o-groats-button,
+.channel-tunnel-button,
+.m1-button,
+.grand-canyon-button,
+.hadrians-wall-button {
+  background: none !important;
+  border: none;
+  margin-top: 7%;
+  font-family: "Josefin Sans", sans-serif;
+  padding: 0 !important;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: center;
+  font-size: 3vmin;
+  margin-bottom: 7%;
+}
