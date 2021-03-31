@@ -20,3 +20,11 @@ body {
   -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
   box-sizing: border-box; /* IE */
 }
+
+.homepage_container {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
