@@ -1,14 +1,10 @@
-.header {
+.start-challenge_header {
   text-align: center;
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
-.john-o-groats,
-.channel-tunnel,
-.m1,
-.grand-canyon,
-.hadrians-wall {
+.start-challenges-container {
   justify-content: center;
   align-items: center;
   display: grid;
@@ -28,11 +24,7 @@
   text-align: center;
 }
 
-.john-o-groats-button,
-.channel-tunnel-button,
-.m1-button,
-.grand-canyon-button,
-.hadrians-wall-button {
+.start-challenges_button {
   background: none !important;
   border: none;
   margin-top: 7%;

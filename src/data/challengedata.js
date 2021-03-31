@@ -1,15 +1,16 @@
 const challengeData = [
   {
-    name: "Land's End to John O Groat's",
-    duration: 120,
-    distanceKm: 970,
+    name: "Hadrian's Wall",
+    daysToComplete: 24,
+    distanceKm: 117,
   },
-  { name: "Channel Tunnel", duration: 120, distanceKm: 50 },
-  { name: "The Nile", duration: 700, distanceKm: 6650 },
+  { name: "The M1", daysToComplete: 62, distanceKm: 310 },
+  { name: "The Channel Tunnel", daysToComplete: 80, distanceKm: 397 },
+  { name: "The Grand Canyon", daysToComplete: 90, distanceKm: 445 },
   {
-    name: "One thousandth of the way to the Moon",
-    duration: 180,
-    distanceKm: 384,
+    name: "Land's End to John O Groat's",
+    daysaToComplete: 195,
+    distanceKm: 970,
   },
 ];
 
