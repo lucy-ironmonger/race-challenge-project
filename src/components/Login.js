@@ -10,18 +10,18 @@ const Login = () => {
     window.location = url;
   }
   return (
-    <>
-      <header className="race-challenge">
+    <div className="main loginpage">
+      <div className="race-challenge">
         <div className="typewriter">
           <h4>Welcome to Race Challenge!</h4>
         </div>
-      </header>
+      </div>
       <div className="login_button_container">
         <button className="login_button" onClick={openUrl}>
           Login
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
