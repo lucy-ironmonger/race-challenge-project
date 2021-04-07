@@ -46,7 +46,7 @@ const ActivitiesList = ({ loggedIn }) => {
   return (
     <div>
       <Navbar />
-      <div className="activities-list_button_container">
+      <div className="activities-list_button_container activity_background">
         <button
           className="activities-list_button_distance_metric"
           onClick={toggleIsOn}
