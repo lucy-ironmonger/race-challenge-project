@@ -1,17 +1,24 @@
 const challengeData = [
   {
-    name: "Hadrian's Wall",
-    daysToComplete: 24,
-    distanceKm: 117,
+    challengeName: "Hadrian's Wall",
+    durationOfChallenge: 24,
+    distance: 117,
   },
-  { name: "The M1", daysToComplete: 62, distanceKm: 310 },
-  { name: "The Channel Tunnel", daysToComplete: 80, distanceKm: 397 },
-  { name: "The Grand Canyon", daysToComplete: 90, distanceKm: 445 },
+  { challengeName: "The M1", durationOfChallenge: 62, distance: 310 },
   {
-    name: "Land's End to John O Groat's",
-    daysaToComplete: 195,
-    distanceKm: 970,
+    challengeName: "The Channel Tunnel",
+    durationOfChallenge: 80,
+    distance: 397,
+  },
+  {
+    challengeName: "The Grand Canyon",
+    durationOfChallenge: 90,
+    distance: 445,
+  },
+  {
+    challengeName: "Land's End to John O Groat's",
+    durationOfChallenge: 195,
+    distance: 970,
   },
 ];
-
 export default challengeData;

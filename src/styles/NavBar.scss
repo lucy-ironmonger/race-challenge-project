@@ -41,7 +41,7 @@ nav.navbar {
   background: $appcolor;
 }
 
-.navbar-container {
+.navbar_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,8 +49,8 @@ nav.navbar {
   max-width: 1500px;
 }
 
-.navbar-logo {
-  color: #fff;
+.navbar_logo {
+  color: $appcolor;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
@@ -60,12 +60,23 @@ nav.navbar {
   align-items: center;
 }
 
+.navbar_logo {
+  color: white;
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
 .fa-typo3 {
   margin-left: 0.5rem;
   font-size: 1.8rem;
 }
 
-.nav-menu {
+.navbar_menu {
   display: grid;
   grid-template-columns: repeat(4, auto);
   grid-gap: 10px;
@@ -76,12 +87,12 @@ nav.navbar {
   margin-right: 2rem;
 }
 
-.nav-item {
+.navbar_item {
   height: 80px;
 }
 
-.nav-links {
-  color: black;
+.navbarLink {
+  color: $appcolor;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -89,27 +100,42 @@ nav.navbar {
   height: 100%;
 }
 
-.nav-links:hover {
-  border-bottom: 4px solid #fff;
+.navbarLink:hover {
+  border-bottom: 4px solid $appcolor;
   transition: all 0.2s ease-out;
+  color: $appcolor;
+}
+
+.navbarLink.active {
+  color: #fff;
 }
 
 .fa-bars {
-  color: #fff;
-  font-family: "FontAwesome" !important;
+  color: $appcolor;
+  // font-family: "FontAwesome" !important;
 }
 
 .fa-running {
-  color: #fff;
-  font-family: "FontAwesome" !important;
-  $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+  color: $appcolor;
+  font-size: 2rem;
+  // font-family: "FontAwesome" !important;
+  // $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 }
 
-.nav-links-mobile {
+.running-icon {
+  color: white;
+}
+
+.hamburger-white {
+  color: white;
+}
+
+.navbarLink-mobile.active {
   display: none;
+  color: white;
 }
 
-.menu-icon {
+.navbar_menu-icon {
   display: none;
 }
 
@@ -118,7 +144,7 @@ nav.navbar {
     position: relative;
   }
 
-  .nav-menu {
+  .navbar_menu {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -130,24 +156,29 @@ nav.navbar {
     transition: all 0.5s ease;
   }
 
-  .nav-menu.active {
-    background: $appcolor;
+  .navbar_menu.active {
+    background: #fff;
+    // display: flex;
+    // align-items: center;
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
   }
 
-  .nav-links {
+  .navbarLink.active {
     text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
+    // background-color: #fff;
+    color: $appcolor;
   }
 
-  .nav-links:hover {
-    background-color: #fff;
-    color: #242424;
+  .navbarLink:hover {
+    background-color: $appcolor;
+    width: 100%;
+    color: #fff;
     border-radius: 0;
   }
 
@@ -158,7 +189,7 @@ nav.navbar {
     transform: translate(25%, 50%);
   }
 
-  .menu-icon {
+  .navbar_menu-icon {
     display: block;
     position: absolute;
     top: 0;
@@ -169,12 +200,12 @@ nav.navbar {
   }
 
   .fa-times {
-    color: #fff;
+    color: $appcolor;
     font-size: 2rem;
-    font-family: "FontAwesome" !important;
+    // font-family: "FontAwesome" !important;
   }
 
-  .nav-links-mobile {
+  .navbarLink-mobile {
     display: block;
     text-align: center;
     margin: 2rem auto;
@@ -183,15 +214,15 @@ nav.navbar {
     text-decoration: none;
     font-size: 1.5rem;
     background-color: transparent;
-    color: #fff;
+    color: $appcolor;
     padding: 14px 20px;
     border: 1px solid #fff;
     transition: all 0.3s ease-out;
   }
 
-  .nav-links-mobile:hover {
+  .navbarLink-mobile:hover {
     background: #fff;
-    color: #242424;
+    // color: #242424;
     transition: 250ms;
   }
 }

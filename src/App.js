@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import ExchangeToken from "./components/ExchangeToken";
-import NavBar from "./components/NavBar";
 import ActivitiesList from "./components/ActivitiesList";
 import { getAccessToken } from "./tokenService";
 import SelectAChallenge from "./components/SelectAChallenge";
