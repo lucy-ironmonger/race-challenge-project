@@ -8,6 +8,9 @@ const AUTH_LINK = process.env.REACT_APP_AUTH_LINK;
 const EXPIRES_AT_KEY = "expires_at";
 const ACCESS_TOKEN_KEY = "access_token";
 const REFRESH_TOKEN_KEY = "refresh_token";
+const STRAVA_ID = "stravaId";
+const USERNAME = "username";
+const FIRST_NAME = "firstName";
 
 //
 export function getAccessToken() {
@@ -75,6 +78,9 @@ export async function setTokensFromStrava(authCode) {
     window.localStorage.setItem(EXPIRES_AT_KEY, res.data.expires_at);
     window.localStorage.setItem(ACCESS_TOKEN_KEY, res.data.access_token);
     window.localStorage.setItem(REFRESH_TOKEN_KEY, res.data.refresh_token);
+    window.localStorage.setItem(STRAVA_ID, res.data.athlete.id);
+    window.localStorage.setItem(USERNAME, res.data.athlete.username);
+    window.localStorage.setItem(FIRST_NAME, res.data.athlete.firstname);
   } else {
     throw new Error("Could not log into Strava!");
   }
