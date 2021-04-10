@@ -6,6 +6,10 @@ import ExchangeToken from "./components/ExchangeToken";
 import ActivitiesList from "./components/ActivitiesList";
 import { getAccessToken } from "./tokenService";
 import SelectAChallenge from "./components/SelectAChallenge";
+import challengeData from "./data/challengedata.js";
+
+const DATA = challengeData;
+
 // APP
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -43,6 +47,7 @@ const App = () => {
           path="/challenges"
           render={() => (
             <SelectAChallenge
+              challenges={DATA}
               savedChallenge={savedChallenge}
               setSavedChallenge={setSavedChallenge}
             />

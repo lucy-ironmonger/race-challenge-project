@@ -1,0 +1,9 @@
+{
+    "short_name": "Race Challenge",
+    "name": "ace Challenge App",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
+  
