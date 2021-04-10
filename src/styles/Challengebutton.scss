@@ -1,0 +1,26 @@
+img {
+  width: 500px;
+  height: 300px;
+  text-align: center;
+  border: solid black;
+}
+
+.Challengebutton {
+  text-align: center;
+}
+
+.button {
+  background-color: orange;
+
+  padding: 7px;
+  display: flex;
+  justify-content: center;
+  border: black solid;
+}
+
+.button {
+  display: inline-block;
+  width: 500px;
+  height: 30px;
+  padding: 0 0 2 0;
+}
