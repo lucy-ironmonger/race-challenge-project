@@ -5,6 +5,7 @@ import Challengebutton from "./Challengebutton";
 
 const USER_LINK = "http://localhost:4001/users";
 let USER_NAME = window.localStorage.username;
+let STRAVA_ID = window.localStorage.stravaId;
 
 //     .then((results) => {
 //       setSavedProperties(results.data);
@@ -13,29 +14,34 @@ let USER_NAME = window.localStorage.username;
 // }, [userID]);
 
 const Home = () => {
-  const handleClick = () => {
-    console.log("click before async");
-    //   const res = axios.post(USER_LINK, { username: USER_NAME });
-    // };
+  useEffect(() => {
+    console.log(USER_NAME, STRAVA_ID);
+    axios.post(
+      USER_LINK,
+      {},
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: {
+          stravaId: STRAVA_ID,
+          username: USER_NAME,
+        },
+      }
+    );
+  }, []);
 
-    function saveUserToDb() {
-      axios.post(
-        USER_LINK,
-        {},
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: {
-            stravaId: window.localStorage.stravaId,
-            username: window.localStorage.username,
-          },
-        }
-      );
-      console.log("click after async");
-    }
-  };
+  // const handleClick = () => {
+  //   console.log("click before async");
+  //   //   const res = axios.post(USER_LINK, { username: USER_NAME });
+  //   // };
+
+  //   function saveUserToDb() {
+  //     console.log("click after async");
+  //   }
+  // };
+
   // async function saveUserToDb() {
   //   const res = await axios.post(
   //     USER_LINK,
@@ -82,7 +88,6 @@ const Home = () => {
       <Navbar />
       <div className="homepage_container">
         <h2>Hi, {window.localStorage.firstName}</h2>
-        <button onClick={handleClick}>Add athlete to database</button>
       </div>
       <Challengebutton />
     </>

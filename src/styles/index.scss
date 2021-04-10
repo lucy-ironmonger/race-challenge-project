@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap");
 
+$appcolor: #fc5200;
+
 body {
   // background-image: url("https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2106&q=80");
   // background-size: cover;
@@ -25,6 +27,6 @@ body {
   display: block;
   justify-content: center;
   text-align: center;
-  color: white;
+  color: $appcolor;
   font-size: 2em;
 }
