@@ -6,19 +6,32 @@ import Navbar from "./NavBar";
 const SelectAChallenge = (props) => {
   const [challenges, setChallenges] = useState(props.challenges);
   const [currentChallenge, setCurrentChallenge] = useState("");
+
+  const handleChallengeSelect = (challenge) => {
+    setCurrentChallenge(challenge);
+  };
+
   return (
     <div>
       <Navbar />
-      <h1 className="start-challenge_header">Select a challenge below</h1>
+      {currentChallenge && (
+        <h1 className="start-challenge_header">
+          You've selected
+          <div>{currentChallenge}</div>
+        </h1>
+      )}
+      {!currentChallenge && (
+        <h1 className="start-challenge_header">Select a challenge below</h1>
+      )}
 
-      {challenges.map((challenge, index) => {
+      {challenges.map((challenge) => {
         return (
           <Challenge
             challengeName={challenge.challengeName}
             challengeDistance={challenge.distance}
             challengeDuration={challenge.durationOfChallenge}
             key={challenge.challengeName}
-            setCurrentChallenge={setCurrentChallenge}
+            onChallengeSelect={handleChallengeSelect}
           />
         );
       })}

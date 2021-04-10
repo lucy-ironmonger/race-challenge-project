@@ -4,7 +4,7 @@ const Challenge = ({
   challengeName,
   challengeDistance,
   challengeDuration,
-  setCurrentChallenge,
+  onChallengeSelect,
 }) => {
   return (
     <div className="start-challenges-container">
@@ -12,7 +12,10 @@ const Challenge = ({
       <p>Distance: {challengeDistance} Kilometers</p>
       <p>Time to Complete: {challengeDuration} Days</p>
 
-      <button className="start-challenges_button" onClick={setCurrentChallenge}>
+      <button
+        className="start-challenges_button"
+        onClick={() => onChallengeSelect(challengeName)}
+      >
         Start Challenge
       </button>
     </div>
