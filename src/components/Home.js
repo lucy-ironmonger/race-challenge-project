@@ -7,6 +7,16 @@ const USER_LINK = "http://localhost:4001/users";
 let USER_NAME = window.localStorage.username;
 let STRAVA_ID = window.localStorage.stravaId;
 
+function getRequest() {
+  axios
+    .get(`${USER_LINK}/${STRAVA_ID}`)
+    .then((res) => console.log(res))
+    .catch((error) => {
+      throw error;
+    });
+}
+getRequest();
+
 function sendRequest() {
   console.log("sending request");
   return axios({
@@ -22,6 +32,8 @@ function sendRequest() {
       throw error;
     });
 }
+
+// sendRequest();
 
 const Home = () => {
   return (
