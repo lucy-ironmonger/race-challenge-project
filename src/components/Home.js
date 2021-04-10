@@ -49,7 +49,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="homepage_container">
-        <h2>Hi, {window.localStorage.firstName}</h2>
+        <h2>Hi {window.localStorage.firstName}</h2>
       </div>
       <Challengebutton />
     </>
