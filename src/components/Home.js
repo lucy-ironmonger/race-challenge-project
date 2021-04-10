@@ -1,6 +1,20 @@
-import React from "react";
-import Challengebutton from "./Challengebutton";
+import React, { useEffect } from "react";
 import Navbar from "./NavBar";
+import axios from "axios";
+import Challengebutton from "./Challengebutton";
+
+// useEffect(() => {
+//   if (wwindow.localStorage.stravaId) {
+//     axios.post("http://localhost:4001/userchallenge").then((results) => {
+//       setSavedProperties(results.data);
+//     });
+//   }
+// }, [userID]);
+
+// const handleLogout = () => {
+//   window.FB.logout(() => {});
+//   setUserID("");
+// };
 
 const Home = () => {
   return (
@@ -8,7 +22,8 @@ const Home = () => {
       <Navbar />
 
       <div className="homepage_container">
-        <h1>Race Challenge Homepage</h1>
+        <h2>Hi, {window.localStorage.firstName}</h2>
+        <button>Add athlete to database</button>
       </div>
 
       <Challengebutton />

@@ -1,13 +1,25 @@
 import React from "react";
 import "../styles/SelectAChallenge.scss";
 import Navbar from "./NavBar";
+import challengeData from "../data/challengedata.js";
 
-const SelectAChallenge = ({ savedChallenge, setSavedChallenge }) => {
+const SelectAChallenge = () => {
   return (
     <div>
       <Navbar />
-      <h1 className="header">Select a challenge below</h1>
-      <div className="john-o-groats">
+      <h1 className="start-challenge_header">Select a challenge below</h1>
+      {challengeData.map((challenges) => {
+        return (
+          <div className="start-challenges-container">
+            <h2>{challenges.name}</h2>
+            <p>Distance: {challenges.distanceKm} Kilometers</p>
+            <p>Time to Complete: {challenges.daysToComplete} Days</p>
+            <button className="start-challenges_button">Start Challenge</button>
+          </div>
+        );
+      })}
+
+      {/* <div className="john-o-groats">
         <h2>Land's end to John o' Groats</h2>
         <p>Distance: 603 miles</p>
         <p>Time to Complete: 120 days</p>
@@ -36,7 +48,7 @@ const SelectAChallenge = ({ savedChallenge, setSavedChallenge }) => {
         <p>Distance: 73 miles</p>
         <p>Time to Complete: 15 days</p>
         <button className="hadrians-wall-button">Start Challenge</button>
-      </div>
+      </div> */}
     </div>
   );
 };
