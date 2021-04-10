@@ -21,4 +21,5 @@ const challengeData = [
     distance: 970,
   },
 ];
+
 export default challengeData;
