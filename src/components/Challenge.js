@@ -9,8 +9,8 @@ const Challenge = ({
   return (
     <div className="start-challenges-container">
       <h1>{challengeName}</h1>
-      <p>Distance: {challengeDistance} Kilometers</p>
-      <p>Time to Complete: {challengeDuration} Days</p>
+      <h3>Distance: {challengeDistance} Kilometers</h3>
+      <h3>Time to Complete: {challengeDuration} Days</h3>
 
       <button
         className="start-challenges_button"

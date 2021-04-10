@@ -17,7 +17,7 @@ const SelectAChallenge = (props) => {
       {currentChallenge && (
         <h1 className="start-challenge_header">
           You've selected
-          <div>{currentChallenge}</div>
+          <h2>{currentChallenge}</h2>
         </h1>
       )}
       {!currentChallenge && (
