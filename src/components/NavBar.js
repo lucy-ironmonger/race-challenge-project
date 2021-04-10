@@ -63,7 +63,7 @@ function Navbar() {
         <div className="navbar_container">
           <Link to="/" className="navbar_logo" onClick={closeMobileMenu}>
             <i
-              class={`fas fa-running ${navbarLink ? "running-icon" : " "}`}
+              className={`fas fa-running ${navbarLink ? "running-icon" : " "}`}
             ></i>
           </Link>
 
