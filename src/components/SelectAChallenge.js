@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/SelectAChallenge.scss";
+import ConvertKmToM from "../controllers/ConvertKmToM";
 import Challenge from "./Challenge";
 import Navbar from "./NavBar";
 
@@ -14,6 +15,14 @@ const SelectAChallenge = (props) => {
   return (
     <div>
       <Navbar />
+      <div className="activities-list_button_container activity_background">
+        <button
+          className="activities-list_button_distance_metric"
+          onClick={props.toggleIsOn}
+        >
+          {props.isOn ? "Set to miles" : "Set to kilometres"}
+        </button>
+      </div>
       {currentChallenge && (
         <h1 className="start-challenge_header">
           You've selected
@@ -32,6 +41,8 @@ const SelectAChallenge = (props) => {
             challengeDuration={challenge.durationOfChallenge}
             key={challenge.challengeName}
             onChallengeSelect={handleChallengeSelect}
+            convertKmToM={ConvertKmToM}
+            isOn={props.isOn}
           />
         );
       })}

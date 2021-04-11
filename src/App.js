@@ -7,6 +7,7 @@ import ActivitiesList from "./components/ActivitiesList";
 import { getAccessToken } from "./tokenService";
 import SelectAChallenge from "./components/SelectAChallenge";
 import challengeData from "./data/challengedata.js";
+import UseToggle from "./controllers/UseToggle";
 
 const DATA = challengeData;
 
@@ -14,6 +15,7 @@ const DATA = challengeData;
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [savedChallenge, setSavedChallenge] = useState();
+  const [isOn, toggleIsOn] = UseToggle();
 
   useEffect(() => {
     const accessTokenCheck = async () => {
@@ -40,7 +42,12 @@ const App = () => {
           <ExchangeToken setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
         </Route>
         <Route path="/activities">
-          <ActivitiesList className="activities-list" loggedIn={loggedIn} />
+          <ActivitiesList
+            className="activities-list"
+            loggedIn={loggedIn}
+            isOn={isOn}
+            toggleIsOn={toggleIsOn}
+          />
         </Route>
         <Route
           exact
@@ -50,6 +57,8 @@ const App = () => {
               challenges={DATA}
               savedChallenge={savedChallenge}
               setSavedChallenge={setSavedChallenge}
+              isOn={isOn}
+              toggleIsOn={toggleIsOn}
             />
           )}
         />
