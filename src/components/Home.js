@@ -44,7 +44,7 @@ function postRequest() {
     });
 }
 
-sendRequest();
+// postRequest();
 
 const Home = () => {
   return (
