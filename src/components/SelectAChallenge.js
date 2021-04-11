@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "../styles/SelectAChallenge.scss";
 import ConvertKmToM from "../controllers/ConvertKmToM";
+import axios from "axios";
 import Challenge from "./Challenge";
 import Navbar from "./NavBar";
+
+const USER_LINK = "http://localhost:4001/userchallenge";
+let STRAVA_ID = window.localStorage.stravaId;
+let USER_NAME = window.localStorage.username;
+console.log(USER_NAME);
 
 const SelectAChallenge = (props) => {
   const [challenges, setChallenges] = useState(props.challenges);
@@ -11,6 +17,25 @@ const SelectAChallenge = (props) => {
   const handleChallengeSelect = (challenge) => {
     setCurrentChallenge(challenge);
   };
+
+  function postUserChallengeRequest(challengeName, challengeDistance) {
+    console.log("new userchallenge added to database");
+    return axios({
+      method: "post",
+      url: USER_LINK,
+      data: {
+        stravaId: STRAVA_ID,
+        username: USER_NAME,
+        currentChallenge: challengeName,
+        currentDistance: challengeDistance,
+        remainingDistance: challengeDistance,
+      },
+    })
+      .then((res) => console.log(res))
+      .catch((error) => {
+        throw error;
+      });
+  }
 
   return (
     <div>
@@ -42,6 +67,7 @@ const SelectAChallenge = (props) => {
             key={challenge.challengeName}
             onChallengeSelect={handleChallengeSelect}
             convertKmToM={ConvertKmToM}
+            postUserChallengeRequest={postUserChallengeRequest}
             isOn={props.isOn}
           />
         );
