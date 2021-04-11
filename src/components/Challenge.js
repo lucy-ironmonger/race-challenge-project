@@ -5,11 +5,16 @@ const Challenge = ({
   challengeDistance,
   challengeDuration,
   onChallengeSelect,
+  convertKmToM,
+  isOn,
 }) => {
   return (
     <div className="start-challenges-container">
       <h1>{challengeName}</h1>
-      <h3>Distance: {challengeDistance} Kilometers</h3>
+      {isOn && (
+        <h3>{`Distance: ${(challengeDistance / 1000).toFixed(2)} km`}</h3>
+      )}
+      {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
       <button
