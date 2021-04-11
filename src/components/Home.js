@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "./NavBar";
 import axios from "axios";
 import Challengebutton from "./Challengebutton";
@@ -22,6 +22,8 @@ function sendRequest() {
       throw error;
     });
 }
+
+sendRequest();
 
 const Home = () => {
   return (
