@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import ActivitySummary from "./ActivitySummary";
-import UseToggle from "../controllers/UseToggle";
-import ConvertKmToM from "../controllers/ConvertKmToM";
 import averagePaceMph from "../controllers/averagePaceMph";
 import averagePaceKm from "../controllers/averagePaceKm";
+import ConvertKmToM from "../controllers/ConvertKmToM";
 import "../styles/ActivitiesList.scss";
 import { getAccessToken } from "../tokenService";
 import Navbar from "./NavBar";
 
-const ActivitiesList = ({ loggedIn }) => {
-  const [isOn, toggleIsOn] = UseToggle();
+const ActivitiesList = ({ loggedIn, isOn, toggleIsOn }) => {
   const [activities, setActivities] = useState([]);
 
   const fetchActivities = async (accessToken) => {
