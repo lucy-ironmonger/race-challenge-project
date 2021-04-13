@@ -5,6 +5,8 @@ import axios from "axios";
 import Challenge from "./Challenge";
 import Navbar from "./NavBar";
 
+let DATE_NOW = Date.now();
+
 const USER_LINK = "http://localhost:4001/userchallenge";
 let STRAVA_ID = window.localStorage.stravaId;
 let USER_NAME = window.localStorage.username;
@@ -14,9 +16,9 @@ const SelectAChallenge = (props) => {
   const [challenges, setChallenges] = useState(props.challenges);
   const [currentChallenge, setCurrentChallenge] = useState("");
 
-  const handleChallengeSelect = (challenge) => {
+  function handleChallengeSelect(challenge) {
     setCurrentChallenge(challenge);
-  };
+  }
 
   function postUserChallengeRequest(challengeName, challengeDistance) {
     console.log("new userchallenge added to database");
