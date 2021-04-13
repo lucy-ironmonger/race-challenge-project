@@ -16,6 +16,30 @@ let STRAVA_ID = window.localStorage.stravaId;
 
 const Home = ({ handleChallengeSave, savedChallenge }) => {
   // const [savedChallenge, setSavedChallenge] = useState("");
+
+  const getRequestUserChallengeDb = async () => {
+    await axios
+      .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Yes keen bean! You're in a challenge.");
+          console.log(res.data.currentChallenge);
+          let yourCurrentChallenge = res.data.currentChallenge;
+          handleChallengeSave(yourCurrentChallenge);
+        }
+        if (res.status === 201) {
+          console.log(
+            "You ain't in a challenge mate. Head to the challenges page to join one!"
+          );
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+
+  getRequestUserChallengeDb();
+
   /////
 
   function postRequestUserDb() {
@@ -55,28 +79,6 @@ const Home = ({ handleChallengeSave, savedChallenge }) => {
   getRequestUserDb();
 
   /////
-
-  async function getRequestUserChallengeDb() {
-    await axios
-      .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("Yes keen bean! You're in a challenge.");
-          console.log(res.data.currentChallenge);
-          let yourCurrentChallenge = res.data.currentChallenge;
-          handleChallengeSave(yourCurrentChallenge);
-        }
-        if (res.status === 201) {
-          console.log(
-            "You ain't in a challenge mate. Head to the challenges page to join one!"
-          );
-        }
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }
-  getRequestUserChallengeDb();
 
   return (
     <>
