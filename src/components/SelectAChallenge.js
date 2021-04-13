@@ -5,23 +5,21 @@ import axios from "axios";
 import Challenge from "./Challenge";
 import Navbar from "./NavBar";
 
-// let DATE_NOW = Date.now();
-
 const USER_LINK = "http://localhost:4001/userchallenge";
 let STRAVA_ID = window.localStorage.stravaId;
 let USER_NAME = window.localStorage.username;
-console.log(USER_NAME);
 
-const SelectAChallenge = (props) => {
-  const [challenges, setChallenges] = useState(props.challenges);
-  const [currentChallenge, setCurrentChallenge] = useState("");
-
-  function handleChallengeSelect(challenge) {
-    setCurrentChallenge(challenge);
-  }
+const SelectAChallenge = ({
+  savedChallenge,
+  handleChallengeSelect,
+  toggleIsOn,
+  isOn,
+  challengesData,
+}) => {
+  const [challenges, setChallenges] = useState(challengesData);
 
   function postUserChallengeRequest(challengeName, challengeDistance) {
-    console.log("new userchallenge added to database");
+    console.log("New user challenge added to database");
     return axios({
       method: "post",
       url: USER_LINK,
@@ -45,18 +43,18 @@ const SelectAChallenge = (props) => {
       <div className="activities-list_button_container activity_background">
         <button
           className="activities-list_button_distance_metric"
-          onClick={props.toggleIsOn}
+          onClick={toggleIsOn}
         >
-          {props.isOn ? "Set to miles" : "Set to kilometres"}
+          {isOn ? "Set to miles" : "Set to kilometres"}
         </button>
       </div>
-      {currentChallenge && (
+      {savedChallenge && (
         <h1 className="start-challenge_header">
           You've selected
-          <h2>{currentChallenge}</h2>
+          <h2>{savedChallenge}</h2>
         </h1>
       )}
-      {!currentChallenge && (
+      {!savedChallenge && (
         <h1 className="start-challenge_header">Select a challenge below</h1>
       )}
 
@@ -70,7 +68,7 @@ const SelectAChallenge = (props) => {
             onChallengeSelect={handleChallengeSelect}
             convertKmToM={ConvertKmToM}
             postUserChallengeRequest={postUserChallengeRequest}
-            isOn={props.isOn}
+            isOn={isOn}
           />
         );
       })}

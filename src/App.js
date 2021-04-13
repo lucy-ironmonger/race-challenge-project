@@ -9,13 +9,17 @@ import SelectAChallenge from "./components/SelectAChallenge";
 import challengeData from "./data/challengedata.js";
 import UseToggle from "./controllers/UseToggle";
 
-const DATA = challengeData;
+const challengesData = challengeData;
 
 // APP
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [savedChallenge, setSavedChallenge] = useState();
+  const [savedChallenge, setSavedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
+
+  const handleChallengeSave = (challenge) => {
+    setSavedChallenge(challenge);
+  };
 
   useEffect(() => {
     const accessTokenCheck = async () => {
@@ -41,7 +45,8 @@ const App = () => {
           exact
           component={Home}
           savedChallenge={savedChallenge}
-          setSavedChallenge={setSavedChallenge}
+          // setSavedChallenge={setSavedChallenge}
+          handleChallengeSave={handleChallengeSave}
         />
         <Route path="/login" component={Login} />
         <Route path="/exchange_token">
@@ -60,11 +65,12 @@ const App = () => {
           path="/challenges"
           render={() => (
             <SelectAChallenge
-              challenges={DATA}
-              savedChallenge={savedChallenge}
-              setSavedChallenge={setSavedChallenge}
+              challengesData={challengesData}
               isOn={isOn}
               toggleIsOn={toggleIsOn}
+              // savedChallenge={savedChallenge}
+              // setSavedChallenge={setSavedChallenge}
+              handleChallengeSave={handleChallengeSave}
             />
           )}
         />
