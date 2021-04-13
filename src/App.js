@@ -36,7 +36,13 @@ const App = () => {
   return (
     <>
       <Router>
-        <Route path="/" exact component={Home} />
+        <Route
+          path="/"
+          exact
+          component={Home}
+          savedChallenge={savedChallenge}
+          setSavedChallenge={setSavedChallenge}
+        />
         <Route path="/login" component={Login} />
         <Route path="/exchange_token">
           <ExchangeToken setLoggedIn={setLoggedIn} loggedIn={loggedIn} />

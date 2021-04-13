@@ -58,11 +58,13 @@ const Home = () => {
         .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
         .then((res) => {
           if (res.status === 200) {
-            console.log("You're in a challenge", res);
+            console.log("You're in a challenge");
           }
           if (res.status === 201) {
-            console.log("Would you like to be in one?");
-            // postRequestUserDb();
+            console.log(
+              "You ain't in a challenge mate. Head to the challenges page to join one!",
+              res
+            );
           }
         })
         .catch((error) => {
