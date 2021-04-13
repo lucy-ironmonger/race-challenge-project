@@ -5,7 +5,7 @@ import axios from "axios";
 import Challenge from "./Challenge";
 import Navbar from "./NavBar";
 
-let DATE_NOW = Date.now();
+// let DATE_NOW = Date.now();
 
 const USER_LINK = "http://localhost:4001/userchallenge";
 let STRAVA_ID = window.localStorage.stravaId;
