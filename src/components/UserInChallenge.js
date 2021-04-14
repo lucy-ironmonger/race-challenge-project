@@ -1,5 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
+let STRAVA_ID = window.localStorage.stravaId;
+
+function EndChallenge() {
+  console.log("deleted challenge");
+  return axios.delete(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`);
+}
 
 const UserInChallenge = ({ savedChallenge }) => {
   return (
@@ -17,12 +26,7 @@ const UserInChallenge = ({ savedChallenge }) => {
               View your challenge stats
             </button>
           </Link>
-          <button
-            className="selectAChallenge-endChallenge_button"
-            // onClick= RUN A DELETE REQUEST TO THE USERCHALLENGE DB
-          >
-            End challenge
-          </button>
+          <button onClick={EndChallenge}>End challenge</button>
         </h1>
       )}
     </>
