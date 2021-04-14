@@ -32,6 +32,7 @@ const Challenge = ({
   convertKmToM,
   isOn,
   postUserChallengeRequest,
+  savedChallenge,
 }) => {
   return (
     <div className="start-challenges-container">
@@ -42,23 +43,26 @@ const Challenge = ({
       {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
-      <button
+      {savedChallenge && (
+        <button
+          onClick={() =>
+            postUserChallengeRequest(
+              challengeName,
+              challengeDistance,
+              challengeDuration
+            )
+          }
+        >
+          Select Challenge
+        </button>
+      )}
+
+      {/* <button
         className="start-challenges_button"
         onClick={() => onChallengeSelect(challengeName)}
       >
         Start Challenge
-      </button>
-      <button
-        onClick={() =>
-          postUserChallengeRequest(
-            challengeName,
-            challengeDistance,
-            challengeDuration
-          )
-        }
-      >
-        Start a Challenge
-      </button>
+      </button> */}
     </div>
   );
 };

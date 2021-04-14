@@ -1,4 +1,4 @@
-const challengeData = [
+const challengeRawData = [
   {
     challengeName: "Hadrian's Wall",
     durationOfChallenge: 24,
@@ -22,4 +22,4 @@ const challengeData = [
   },
 ];
 
-export default challengeData;
+export default challengeRawData;

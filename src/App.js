@@ -6,14 +6,14 @@ import ExchangeToken from "./components/ExchangeToken";
 import ActivitiesList from "./components/ActivitiesList";
 import { getAccessToken } from "./tokenService";
 import SelectAChallenge from "./components/SelectAChallenge";
-import challengeData from "./data/challengedata.js";
 import UseToggle from "./controllers/UseToggle";
-
-const challengesData = challengeData;
+import challengeRawData from "./data/challengeRawData.js";
 
 // APP
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [challengeData, setChallengeData] = useState(challengeRawData);
+  const [inChallenge, setInChallenge] = useState(false);
   const [savedChallenge, setSavedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
 
@@ -64,12 +64,12 @@ const App = () => {
           path="/challenges"
           render={() => (
             <SelectAChallenge
-              challengesData={challengesData}
               isOn={isOn}
               toggleIsOn={toggleIsOn}
-              // savedChallenge={savedChallenge}
-              // setSavedChallenge={setSavedChallenge}
+              savedChallenge={savedChallenge}
+              setSavedChallenge={setSavedChallenge}
               handleChallengeSave={handleChallengeSave}
+              challengeData={challengeData}
             />
           )}
         />
