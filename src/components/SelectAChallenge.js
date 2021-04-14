@@ -3,8 +3,6 @@ import "../styles/SelectAChallenge.scss";
 import ConvertKmToM from "../controllers/ConvertKmToM";
 import axios from "axios";
 import Navbar from "./NavBar";
-import KmToMButton from "./KmToMButton";
-import ChallengesList from "./ChallengesList";
 import UserInChallenge from "./UserInChallenge";
 import UserIsNotInChallenge from "./UserIsNotInChallenge";
 
@@ -14,8 +12,9 @@ let USER_NAME = window.localStorage.username;
 let STRAVA_ID = window.localStorage.stravaId;
 
 const SelectAChallenge = ({
-  savedChallenge,
-  handleChallengeSave,
+  selectedChallenge,
+  setSelectedChallenge,
+  handleChallengeSelect,
   toggleIsOn,
   isOn,
   challengeData,
@@ -31,7 +30,7 @@ const SelectAChallenge = ({
           console.log("Yes keen bean! You're in a challenge.");
           console.log(res.data.currentChallenge);
           let yourCurrentChallenge = res.data.currentChallenge;
-          handleChallengeSave(yourCurrentChallenge);
+          handleChallengeSelect(yourCurrentChallenge);
           setInChallenge(true);
         }
         if (res.status === 201) {
@@ -70,19 +69,26 @@ const SelectAChallenge = ({
   return (
     <div>
       <Navbar />
-      {inChallenge && <UserInChallenge savedChallenge={savedChallenge} />}
-      {!inChallenge && <KmToMButton toggleIsOn={toggleIsOn} isOn={isOn} /> && (
-          <UserIsNotInChallenge />
-        ) && (
-          <ChallengesList
-            challengeData={challengeData}
-            ConvertKmToM={ConvertKmToM}
-            postUserChallengeRequest={postUserChallengeRequest}
-            handleChallengeSave={handleChallengeSave}
-            isOn={isOn}
-            savedChallenge={savedChallenge}
-          />
-        )}
+      {inChallenge}
+      {inChallenge && (
+        <UserInChallenge
+          setSelectedChallenge={setSelectedChallenge}
+          inChallenge={inChallenge}
+          setInChallenge={setInChallenge}
+        />
+      )}
+      {!inChallenge && (
+        <UserIsNotInChallenge
+          isOn={isOn}
+          toggleIsOn={toggleIsOn}
+          challengeData={challengeData}
+          ConvertKmToM={ConvertKmToM}
+          postUserChallengeRequest={postUserChallengeRequest}
+          handleChallengeSelect={handleChallengeSelect}
+          selectedChallenge={selectedChallenge}
+          setSelectedChallenge={setSelectedChallenge}
+        />
+      )}
     </div>
   );
 };

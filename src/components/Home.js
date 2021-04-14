@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
 import axios from "axios";
-import Challengebutton from "./Challengebutton";
+import ChallengeButton from "./Buttons/ChallengeButton";
 
 const USER_DB_LINK = "http://localhost:4001/users";
 const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
@@ -15,34 +15,34 @@ let STRAVA_ID = window.localStorage.stravaId;
 // 200 = user is in one
 
 const Home = ({
-  handleChallengeSave,
-  savedChallenge,
+  handleChallengeSelect,
+  selectedChallenge,
   inChallege,
   setInChallenge,
 }) => {
-  // CHECK IF USER IS IN A CHALLENGE AND SET STATE
-  const getRequestUserChallengeDb = async () => {
-    await axios
-      .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("Yes keen bean! You're in a challenge.");
-          console.log(res.data.currentChallenge);
-          let yourCurrentChallenge = res.data.currentChallenge;
-          handleChallengeSave(yourCurrentChallenge);
-          setInChallenge(true);
-        }
-        if (res.status === 201) {
-          console.log("You ain't in a challenge mate. Join one!");
-          setInChallenge(false);
-        }
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
+  // // CHECK IF USER IS IN A CHALLENGE AND SET STATE
+  // const getRequestUserChallengeDb = async () => {
+  //   await axios
+  //     .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         console.log("Yes keen bean! You're in a challenge.");
+  //         console.log(res.data.currentChallenge);
+  //         let yourCurrentChallenge = res.data.currentChallenge;
+  //         handleChallengeSelect(yourCurrentChallenge);
+  //         setInChallenge(true);
+  //       }
+  //       if (res.status === 201) {
+  //         console.log("You ain't in a challenge mate. Join one!");
+  //         setInChallenge(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       throw error;
+  //     });
+  // };
 
-  getRequestUserChallengeDb();
+  // getRequestUserChallengeDb();
 
   ///// IF INVOKED WILL ADD USER TO USER DB
 
@@ -91,9 +91,9 @@ const Home = ({
       <Navbar />
       <div className="homepage_container">
         <h2>Hi {window.localStorage.firstName}</h2>
-        <h3>You're in the {savedChallenge} Challenge</h3>
+        <h3>You're in the {selectedChallenge} Challenge</h3>
       </div>
-      <Challengebutton />
+      <ChallengeButton />
     </>
   );
 };

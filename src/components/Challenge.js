@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Challenge = ({
   challengeName,
   challengeDistance,
   challengeDuration,
-  onChallengeSelect,
+  handleChallengeSelect,
   convertKmToM,
   isOn,
   postUserChallengeRequest,
-  savedChallenge,
+  inChallenge,
+  selectedChallenge,
+  setPostChallengeDistance,
+  setPostChallengeDuration,
 }) => {
+  useEffect(() => {
+    setPostChallengeDistance(challengeDistance);
+    setPostChallengeDuration(challengeDuration);
+  }, []);
+
   return (
     <div className="start-challenges-container">
       <h1>{challengeName}</h1>
@@ -19,26 +27,16 @@ const Challenge = ({
       {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
-      {savedChallenge && (
-        <button
-          onClick={() =>
-            postUserChallengeRequest(
-              challengeName,
-              challengeDistance,
-              challengeDuration
-            )
-          }
-        >
-          Select Challenge
-        </button>
+      {!inChallenge && (
+        <div className="select-challenges_button_container">
+          <button
+            className="select-challenges_button"
+            onClick={() => handleChallengeSelect(challengeName)}
+          >
+            Select Challenge
+          </button>
+        </div>
       )}
-
-      {/* <button
-        className="start-challenges_button"
-        onClick={() => onChallengeSelect(challengeName)}
-      >
-        Start Challenge
-      </button> */}
     </div>
   );
 };

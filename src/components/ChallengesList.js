@@ -6,8 +6,11 @@ const ChallengesList = ({
   onChallengeSelect,
   postUserChallengeRequest,
   isOn,
-  savedChallenge,
+  selectedChallenge,
   challengeData,
+  handleChallengeSelect,
+  setPostChallengeDistance,
+  setPostChallengeDuration,
 }) => {
   return (
     <div>
@@ -22,7 +25,10 @@ const ChallengesList = ({
             convertKmToM={ConvertKmToM}
             postUserChallengeRequest={postUserChallengeRequest}
             isOn={isOn}
-            savedChallenge={savedChallenge}
+            selectedChallenge={selectedChallenge}
+            handleChallengeSelect={handleChallengeSelect}
+            setPostChallengeDistance={setPostChallengeDistance}
+            setPostChallengeDuration={setPostChallengeDuration}
           />
         );
       })}

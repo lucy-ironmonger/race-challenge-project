@@ -14,11 +14,11 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [challengeData, setChallengeData] = useState(challengeRawData);
   const [inChallenge, setInChallenge] = useState(false);
-  const [savedChallenge, setSavedChallenge] = useState("");
+  const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
 
-  const handleChallengeSave = (challenge) => {
-    setSavedChallenge(challenge);
+  const handleChallengeSelect = (challenge) => {
+    setSelectedChallenge(challenge);
   };
 
   useEffect(() => {
@@ -42,9 +42,9 @@ const App = () => {
       <Router>
         <Route path="/" exact>
           <Home
-            savedChallenge={savedChallenge}
-            setSavedChallenge={setSavedChallenge}
-            handleChallengeSave={handleChallengeSave}
+            selectedChallenge={selectedChallenge}
+            setSelectedChallenge={setSelectedChallenge}
+            handleChallengeSelect={handleChallengeSelect}
             inChallenge={inChallenge}
             setInChallenge={setInChallenge}
           />
@@ -68,9 +68,9 @@ const App = () => {
             <SelectAChallenge
               isOn={isOn}
               toggleIsOn={toggleIsOn}
-              savedChallenge={savedChallenge}
-              setSavedChallenge={setSavedChallenge}
-              handleChallengeSave={handleChallengeSave}
+              selectedChallenge={selectedChallenge}
+              setSelectedChallenge={setSelectedChallenge}
+              handleChallengeSelect={handleChallengeSelect}
               challengeData={challengeData}
               inChallenge={inChallenge}
               setInChallenge={setInChallenge}
