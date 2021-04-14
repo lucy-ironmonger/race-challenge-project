@@ -14,9 +14,13 @@ let STRAVA_ID = window.localStorage.stravaId;
 // 201 = user not in a challenge
 // 200 = user is in one
 
-const Home = ({ handleChallengeSave, savedChallenge }) => {
-  // const [savedChallenge, setSavedChallenge] = useState("");
-
+const Home = ({
+  handleChallengeSave,
+  savedChallenge,
+  inChallege,
+  setInChallenge,
+}) => {
+  // CHECK IF USER IS IN A CHALLENGE AND SET STATE
   const getRequestUserChallengeDb = async () => {
     await axios
       .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
@@ -26,11 +30,11 @@ const Home = ({ handleChallengeSave, savedChallenge }) => {
           console.log(res.data.currentChallenge);
           let yourCurrentChallenge = res.data.currentChallenge;
           handleChallengeSave(yourCurrentChallenge);
+          setInChallenge(true);
         }
         if (res.status === 201) {
-          console.log(
-            "You ain't in a challenge mate. Head to the challenges page to join one!"
-          );
+          console.log("You ain't in a challenge mate. Join one!");
+          setInChallenge(false);
         }
       })
       .catch((error) => {
@@ -40,7 +44,7 @@ const Home = ({ handleChallengeSave, savedChallenge }) => {
 
   getRequestUserChallengeDb();
 
-  /////
+  ///// IF INVOKED WILL ADD USER TO USER DB
 
   function postRequestUserDb() {
     console.log("Added ya.");
@@ -57,6 +61,8 @@ const Home = ({ handleChallengeSave, savedChallenge }) => {
         throw error;
       });
   }
+
+  ///// CHECKS IF USER IS IN THE USER DB, IF NOT THEN ADDS THEM
 
   function getRequestUserDb() {
     axios
