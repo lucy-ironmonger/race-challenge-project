@@ -45,6 +45,8 @@ const App = () => {
             savedChallenge={savedChallenge}
             setSavedChallenge={setSavedChallenge}
             handleChallengeSave={handleChallengeSave}
+            inChallenge={inChallenge}
+            setInChallenge={setInChallenge}
           />
         </Route>
         <Route path="/login" component={Login} />
@@ -70,6 +72,8 @@ const App = () => {
               setSavedChallenge={setSavedChallenge}
               handleChallengeSave={handleChallengeSave}
               challengeData={challengeData}
+              inChallenge={inChallenge}
+              setInChallenge={setInChallenge}
             />
           )}
         />
