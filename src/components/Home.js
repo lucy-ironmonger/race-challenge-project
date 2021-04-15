@@ -9,6 +9,7 @@ const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
 let USER_NAME = window.localStorage.username;
 let STRAVA_ID = window.localStorage.stravaId;
 let IN_CHALLENGE = "inChallenge";
+const CHALLENGE_SELECTED = "challengeSelected";
 
 // 201 = user not in db
 // 200 = user already there
@@ -29,15 +30,19 @@ const Home = ({
         .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
         .then((res) => {
           if (res.status === 200) {
-            console.log("Yes keen bean! You're in a challenge.");
-            console.log(res.data.currentChallenge);
+            console.log(
+              "GET REQUEST | USERCHALLENGE | HOME : Yes keen bean! You're in a challenge."
+            );
+            console.log(res.data);
             let yourCurrentChallenge = res.data.currentChallenge;
             handleChallengeSelect(yourCurrentChallenge);
             setInChallenge(true);
             window.localStorage.setItem(IN_CHALLENGE, true);
           }
           if (res.status === 201) {
-            console.log("You ain't in a challenge mate. Join one!");
+            console.log(
+              "GET REQUEST | USERCHALLENGE | HOME : You ain't in a challenge mate. Join one!"
+            );
             setInChallenge(false);
             window.localStorage.setItem(IN_CHALLENGE, false);
           }

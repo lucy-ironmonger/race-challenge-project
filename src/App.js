@@ -17,7 +17,10 @@ const App = () => {
   const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
 
+  const CHALLENGE_SELECTED = "challengeSelected";
+
   const handleChallengeSelect = (challenge) => {
+    window.localStorage.setItem("challengeSelected", challenge);
     setSelectedChallenge(challenge);
   };
 

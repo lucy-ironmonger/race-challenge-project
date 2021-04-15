@@ -6,11 +6,6 @@ import Navbar from "./NavBar";
 import UserInChallenge from "./UserInChallenge";
 import UserIsNotInChallenge from "./UserIsNotInChallenge";
 
-const USER_DB_LINK = "http://localhost:4001/users";
-const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
-let USER_NAME = window.localStorage.username;
-let STRAVA_ID = window.localStorage.stravaId;
-
 const SelectAChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
@@ -20,7 +15,14 @@ const SelectAChallenge = ({
   challengeData,
   inChallenge,
   setInChallenge,
+  stravaId,
 }) => {
+  const USER_DB_LINK = "http://localhost:4001/users";
+  const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
+  let USER_NAME = window.localStorage.username;
+  let STRAVA_ID = window.localStorage.stravaId;
+  let IN_CHALLENGE = "inChallenge";
+  const CHALLENGE_SELECTED = "challengeSelected";
   // CHECK IF USER IS IN A CHALLENGE AND SET STATE
 
   // useEffect(() => {
@@ -53,7 +55,12 @@ const SelectAChallenge = ({
   // USER WANTS TO JOIN A CHALLENGE
 
   function postUserChallengeRequest(challengeName, challengeDistance) {
-    console.log("New user challenge added to database");
+    console.log(
+      "POST REQUEST postUserChallengeRequest to USERCHALLENGE | SELECT A CHALLENGE : New user challenge added to database"
+    );
+    window.localStorage.setItem(IN_CHALLENGE, true);
+    window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
+    console.log("Changed inChallenge on localStorage to true");
 
     return axios({
       method: "post",
@@ -73,7 +80,10 @@ const SelectAChallenge = ({
   }
 
   const handlePostUserChallengeRequest = (challengeName, challengeDistance) => {
-    if (selectedChallenge) {
+    if (window.localStorage.challengeSelected) {
+      console.log(
+        "START CHALLENGE BUTTON ONCLICK | FUNC handlePostUserChallengeRequest | SELECT A CHALLENGE"
+      );
       postUserChallengeRequest(challengeName, challengeDistance);
       setInChallenge(true);
       setSelectedChallenge(challengeName);
@@ -83,16 +93,22 @@ const SelectAChallenge = ({
   return (
     <div>
       <Navbar />
-      {inChallenge}
-      {inChallenge && (
+      {/* <UserInChallenge
+        selectedChallenge={selectedChallenge}
+        setSelectedChallenge={setSelectedChallenge}
+        inChallenge={inChallenge}
+        setInChallenge={setInChallenge}
+        stravaId={stravaId}
+      /> */}
+      {window.localStorage.inChallenge === true ? (
         <UserInChallenge
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}
           inChallenge={inChallenge}
           setInChallenge={setInChallenge}
+          stravaId={stravaId}
         />
-      )}
-      {!inChallenge && (
+      ) : (
         <UserIsNotInChallenge
           isOn={isOn}
           toggleIsOn={toggleIsOn}
