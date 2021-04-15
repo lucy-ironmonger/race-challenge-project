@@ -1,10 +1,17 @@
+$appcolor: #fc5200;
+$logoheigth: 5em;
+$logowidth: 5em;
+$fontsize-m: 2em;
+$logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
+  contrast(80%);
+
 .start-challenge_header {
   text-align: center;
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
-.start-challenges-container {
+.start-challenges-container-white {
   justify-content: center;
   align-items: center;
   display: grid;
@@ -17,6 +24,26 @@
   margin-bottom: 5%;
   padding: 1em;
   background: white;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
+  backdrop-filter: blur(15.5px);
+  -webkit-backdrop-filter: blur(15.5px);
+  border-radius: 1em;
+  text-align: center;
+}
+
+.start-challenges-container-orange {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+  color: black;
+  font-size: 3vmin;
+  width: 25em;
+  margin: auto;
+  margin-bottom: 5%;
+  padding: 1em;
+  background: $appcolor;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
   backdrop-filter: blur(15.5px);
   -webkit-backdrop-filter: blur(15.5px);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
 import axios from "axios";
 import Challengebutton from "./Challengebutton";
+import Backgrcolorchange from "./Backgrcolorchange";
 
 const USER_LINK = "http://localhost:4001/users";
 let USER_NAME = window.localStorage.username;
@@ -52,6 +53,8 @@ const Home = () => {
         <h2>Hi {window.localStorage.firstName}</h2>
       </div>
       <Challengebutton />
+
+      <Backgrcolorchange />
     </>
   );
 };

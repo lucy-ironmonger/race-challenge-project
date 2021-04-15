@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/NavBar.scss";
 
-function Navbar() {
+const Navbar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [navbar, setNavBar] = useState(false);
@@ -105,6 +105,6 @@ function Navbar() {
       </nav>
     </>
   );
-}
+};
 
 export default Navbar;
