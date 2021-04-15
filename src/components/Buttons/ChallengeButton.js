@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/ChallengeButton.scss";
 import { Link } from "react-router-dom";
 
-const Challengebutton = () => {
+const ChallengeButton = () => {
   return (
     <>
       <div className="ChallengeButton">
@@ -20,4 +20,4 @@ const Challengebutton = () => {
   );
 };
 
-export default Challengebutton;
+export default ChallengeButton;

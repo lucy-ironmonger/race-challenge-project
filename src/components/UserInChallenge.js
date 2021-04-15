@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import EndChallengeButton from "./Buttons/EndChallengeButton";
+import ViewStatsButton from "./Buttons/ViewStatsButton";
 
 const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
 let STRAVA_ID = window.localStorage.stravaId;
@@ -21,17 +23,21 @@ const UserInChallenge = ({
   return (
     <>
       {inChallenge && (
-        <h1 className="start-challenge_header">
-          You're in the
-          <h2>{selectedChallenge} Challenge</h2>
-          <h3 className="start-challenge_legend">What a legend. Keep going!</h3>
-          <Link to="/">
-            <button className="selectAChallenge-viewStats_button">
-              View your challenge stats
-            </button>
-          </Link>
-          <button onClick={endChallenge}>End challenge</button>
-        </h1>
+        <>
+          <div className="page_container">
+            <h2>You're in the</h2>
+            <h2>{selectedChallenge} Challenge</h2>
+            <h3 className="start-challenge_legend">
+              What a legend. Keep going!
+            </h3>
+          </div>
+          <div>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <ViewStatsButton className="selectAChallenge-viewStats_button" />
+            </Link>
+            <EndChallengeButton endChallenge={endChallenge} />
+          </div>
+        </>
       )}
     </>
   );

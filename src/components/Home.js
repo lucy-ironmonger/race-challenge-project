@@ -95,15 +95,12 @@ const Home = ({
   return (
     <>
       <Navbar />
-      <div className="homepage_container">
+      <div className="page_container">
         <h2>Hi {window.localStorage.firstName}</h2>
         {inChallenge && <h3>You're in the {selectedChallenge} Challenge</h3>}
       </div>
 
-      <Challengebutton />
-
-      <Backgrcolorchange />
-
+      {!inChallenge && <ChallengeButton />}
     </>
   );
 };

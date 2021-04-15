@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 const Challenge = ({
@@ -14,9 +13,7 @@ const Challenge = ({
   setPostChallengeDistance,
   setPostChallengeDuration,
 }) => {
-
   const [click, setClick] = useState(false);
-
   const handleClick = () => setClick(!click);
 
   const onClickChange = () => {
@@ -33,16 +30,15 @@ const Challenge = ({
     setPostChallengeDuration(challengeDuration);
   }, []);
 
-
   return (
     <div
       className={
         click
-          ? "start-challenges-container-orange"
-          : "start-challenges-container-white"
+          ? "select-challenges-container-orange"
+          : "select-challenges-container-white"
       }
     >
-      <i className={onClickChange()} />
+      {/* <i className={onClickChange()} /> */}
       <h1>{challengeName}</h1>
       {isOn && (
         <h3>{`Distance: ${(challengeDistance / 1000).toFixed(2)} km`}</h3>
@@ -50,19 +46,19 @@ const Challenge = ({
       {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
-
       {!inChallenge && (
         <div className="select-challenges_button_container">
           <button
             className="select-challenges_button"
-            onClick={() => handleClick();
-          handleChallengeSelect(challengeName)}
+            onClick={() => {
+              handleClick();
+              handleChallengeSelect(challengeName);
+            }}
           >
             Select Challenge
           </button>
         </div>
       )}
-
     </div>
   );
 };

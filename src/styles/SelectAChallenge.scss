@@ -6,21 +6,20 @@ $fontsize-m: 2em;
 $logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
   contrast(80%);
 
-
 .start-challenge_header {
   text-align: center;
   margin-top: 5%;
   margin-bottom: 1%;
 }
 
-.start-challenges-container-white {
+.select-challenges-container-white {
   justify-content: center;
   align-items: center;
   display: grid;
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
   color: black;
-  font-size: 2em;
+  font-size: 3vmin;
   width: 25em;
   margin: auto;
   margin-bottom: 5%;
@@ -33,16 +32,39 @@ $logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
   text-align: center;
 }
 
-
-.select-challenges-container-orange {
-
+.start-challenges-container_other {
   justify-content: center;
   align-items: center;
   display: grid;
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
   color: black;
+  font-size: 1.5em;
+  width: 25em;
+  margin: auto;
+  // margin-bottom: 1%;
+  padding: 1em 0 0 0;
+  // background: white;
+  // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
+  // backdrop-filter: blur(15.5px);
+  // -webkit-backdrop-filter: blur(15.5px);
+  // border-radius: 1em;
+  text-align: center;
+}
 
+.start-challenges_button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-challenges-container-orange {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+  color: black;
   font-size: 3vmin;
   width: 25em;
   margin: auto;
@@ -59,10 +81,24 @@ $logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
 .start-challenges_button {
   font-family: "Josefin Sans", sans-serif;
   color: white;
-  font-size: 3vmin;
-  width: 10em;
+  font-size: 2em;
+  width: 15em;
   margin: 1em;
   // margin: 2em 25% 1em 25%;
+  padding: 1em;
+  background: green;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
+  backdrop-filter: blur(15.5px);
+  -webkit-backdrop-filter: blur(15.5px);
+  border-radius: 1em;
+  text-align: center;
+}
+
+.end-challenges_button {
+  font-family: "Josefin Sans", sans-serif;
+  color: white;
+  font-size: 2em;
+  width: 15em;
   padding: 1em;
   background: red;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
@@ -70,6 +106,11 @@ $logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
   -webkit-backdrop-filter: blur(15.5px);
   border-radius: 1em;
   text-align: center;
+}
+
+.start-challenges_button:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 .start-challenges_button:focus {
@@ -95,7 +136,7 @@ $logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
   margin: 1em;
   // margin: 2em 25% 1em 25%;
   padding: 1em;
-  background: orange;
+  background: white;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.6);
   backdrop-filter: blur(15.5px);
   -webkit-backdrop-filter: blur(15.5px);
