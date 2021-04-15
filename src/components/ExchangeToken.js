@@ -18,33 +18,21 @@ const ExchangeToken = ({ loggedIn, setLoggedIn }) => {
       await setTokensFromStrava(authCode);
       setLoggedIn(true);
     } catch (error) {
-      console.error("Could not log into strava!");
+      console.error("Could not log into Strava!");
       return setError(true);
     }
   }
 
   if (error) {
-
-    return (
-      <div>
-        There was an error logging in
-      </div>
-    )
+    return <div>There was an error logging in</div>;
   }
-  
+
   if (loggedIn) {
-    return (
-      <Redirect to='/' />
-    )
+    return <Redirect to="/" />;
   }
 
-  handleLogin()
-  return (
-    <div>
-      Loading
-    </div>
-  )
-  
+  handleLogin();
+  return <div>Loading</div>;
 };
 
 export default ExchangeToken;

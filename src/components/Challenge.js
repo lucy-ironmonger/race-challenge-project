@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 
 const Challenge = ({
   challengeName,
   challengeDistance,
   challengeDuration,
-  onChallengeSelect,
+  handleChallengeSelect,
   convertKmToM,
   isOn,
+  postUserChallengeRequest,
+  inChallenge,
+  selectedChallenge,
+  setPostChallengeDistance,
+  setPostChallengeDuration,
 }) => {
+
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -20,6 +27,12 @@ const Challenge = ({
     }
     handleClick();
   };
+
+  useEffect(() => {
+    setPostChallengeDistance(challengeDistance);
+    setPostChallengeDuration(challengeDuration);
+  }, []);
+
 
   return (
     <div
@@ -37,15 +50,19 @@ const Challenge = ({
       {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
-      <button
-        className="start-challenges_button"
-        onClick={() => {
-          handleClick();
-          onChallengeSelect(challengeName);
-        }}
-      >
-        Start Challenge
-      </button>
+
+      {!inChallenge && (
+        <div className="select-challenges_button_container">
+          <button
+            className="select-challenges_button"
+            onClick={() => handleClick();
+          handleChallengeSelect(challengeName)}
+          >
+            Select Challenge
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };
