@@ -8,10 +8,11 @@ const UserIsNotInChallenge = ({
   isOn,
   challengeData,
   ConvertKmToM,
-  postUserChallengeRequest,
+  handlePostUserChallengeRequest,
   handleChallengeSelect,
   selectedChallenge,
   setSelectedChallenge,
+  setInChallenge,
 }) => {
   const [postChallengeDuration, setPostChallengeDuration] = useState("");
   const [postChallengeDistance, setPostChallengeDistance] = useState("");
@@ -22,28 +23,30 @@ const UserIsNotInChallenge = ({
         <>
           <div className="start-challenges-container_other">
             <h1>Select a challenge below.</h1>
-            <h1>Start when ready!</h1>
           </div>
         </>
       )}
       {selectedChallenge && (
         <>
           <div className="start-challenges-container_other">
+            <h1>Time for a new challenge?</h1>
             <h1>{selectedChallenge}</h1>
           </div>
         </>
       )}
       <StartChallengeButton
-        postUserChallengeRequest={postUserChallengeRequest}
+        handlePostUserChallengeRequest={handlePostUserChallengeRequest}
         postSelectedChallenge={selectedChallenge}
         postChallengeDuration={postChallengeDuration}
         postChallengeDistance={postChallengeDistance}
+        setSelectedChallenge={setSelectedChallenge}
+        setInChallenge={setInChallenge}
       />
       <KmToMButton toggleIsOn={toggleIsOn} isOn={isOn} />
       <ChallengesList
         challengeData={challengeData}
         ConvertKmToM={ConvertKmToM}
-        postUserChallengeRequest={postUserChallengeRequest}
+        handlePostUserChallengeRequest={handlePostUserChallengeRequest}
         handleChallengeSelect={handleChallengeSelect}
         isOn={isOn}
         selectedChallenge={selectedChallenge}

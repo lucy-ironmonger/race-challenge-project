@@ -9,6 +9,7 @@ const UserInChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
   setInChallenge,
+  inChallenge,
 }) => {
   function endChallenge() {
     console.log("Goodbye challenge, we hardly knew you.");
@@ -19,7 +20,7 @@ const UserInChallenge = ({
 
   return (
     <>
-      {selectedChallenge && (
+      {inChallenge && (
         <h1 className="start-challenge_header">
           You're in the
           <h2>{selectedChallenge} Challenge</h2>

@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/ChallengeButton.scss";
 
 const StartChallengeButton = ({
-  postUserChallengeRequest,
+  handlePostUserChallengeRequest,
   postSelectedChallenge,
   postChallengeDistance,
   postChallengeDuration,
@@ -12,14 +12,13 @@ const StartChallengeButton = ({
       <div
         className="start-challenges_button"
         onClick={() =>
-          postUserChallengeRequest(
+          handlePostUserChallengeRequest(
             postSelectedChallenge,
-            postChallengeDistance,
-            postChallengeDuration
+            postChallengeDistance
           )
         }
       >
-        Start Challenge
+        Start Challenge!
       </div>
     </div>
   );
