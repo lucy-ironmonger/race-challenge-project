@@ -1,16 +1,24 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "../styles/Challenge.scss";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
 
 const Challenge = ({
   challengeName,
   challengeDistance,
   challengeDuration,
-  onChallengeSelect,
+  handleChallengeSelect,
   convertKmToM,
   isOn,
+  postUserChallengeRequest,
+  inChallenge,
+  selectedChallenge,
+  setPostChallengeDistance,
+  setPostChallengeDuration,
 }) => {
   const [click, setClick] = useState(false);
-
   const handleClick = () => setClick(!click);
 
   const onClickChange = () => {
@@ -22,15 +30,20 @@ const Challenge = ({
     handleClick();
   };
 
+  useEffect(() => {
+    setPostChallengeDistance(challengeDistance);
+    setPostChallengeDuration(challengeDuration);
+  }, []);
+
   return (
     <div
       className={
         click
-          ? "start-challenges-container-orange"
-          : "start-challenges-container-white"
+          ? "select-challenges-container-orange"
+          : "select-challenges-container-white"
       }
     >
-      <i className={onClickChange()} />
+      {/* <i className={onClickChange()} /> */}
       <h1>{challengeName}</h1>
       {isOn && (
         <h3>{`Distance: ${(challengeDistance / 1000).toFixed(2)} km`}</h3>
@@ -38,15 +51,19 @@ const Challenge = ({
       {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
-      <button
-        className="start-challenges_button"
-        onClick={() => {
-          handleClick();
-          onChallengeSelect(challengeName);
-        }}
-      >
-        Start Challenge
-      </button>
+      {!inChallenge && (
+        <div className="select-challenges_button_container">
+          <button
+            className="select-challenges_button"
+            onClick={() => {
+              handleClick();
+              handleChallengeSelect(challengeName);
+            }}
+          >
+            Select Challenge
+          </button>
+        </div>
+      )}
     </div>
   );
 };

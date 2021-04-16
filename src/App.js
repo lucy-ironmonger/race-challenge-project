@@ -6,16 +6,23 @@ import ExchangeToken from "./components/ExchangeToken";
 import ActivitiesList from "./components/ActivitiesList";
 import { getAccessToken } from "./tokenService";
 import SelectAChallenge from "./components/SelectAChallenge";
-import challengeData from "./data/challengedata.js";
 import UseToggle from "./controllers/UseToggle";
-
-const DATA = challengeData;
+import challengeRawData from "./data/challengeRawData.js";
 
 // APP
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [savedChallenge, setSavedChallenge] = useState();
+  const [challengeData, setChallengeData] = useState(challengeRawData);
+  const [inChallenge, setInChallenge] = useState(false);
+  const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
+
+  const CHALLENGE_SELECTED = "challengeSelected";
+
+  const handleChallengeSelect = (challenge) => {
+    window.localStorage.setItem("challengeSelected", challenge);
+    setSelectedChallenge(challenge);
+  };
 
   useEffect(() => {
     const accessTokenCheck = async () => {
@@ -36,7 +43,15 @@ const App = () => {
   return (
     <>
       <Router>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact>
+          <Home
+            selectedChallenge={selectedChallenge}
+            setSelectedChallenge={setSelectedChallenge}
+            handleChallengeSelect={handleChallengeSelect}
+            inChallenge={inChallenge}
+            setInChallenge={setInChallenge}
+          />
+        </Route>
         <Route path="/login" component={Login} />
         <Route path="/exchange_token">
           <ExchangeToken setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
@@ -54,11 +69,14 @@ const App = () => {
           path="/challenges"
           render={() => (
             <SelectAChallenge
-              challenges={DATA}
-              savedChallenge={savedChallenge}
-              setSavedChallenge={setSavedChallenge}
               isOn={isOn}
               toggleIsOn={toggleIsOn}
+              selectedChallenge={selectedChallenge}
+              setSelectedChallenge={setSelectedChallenge}
+              handleChallengeSelect={handleChallengeSelect}
+              challengeData={challengeData}
+              inChallenge={inChallenge}
+              setInChallenge={setInChallenge}
             />
           )}
         />
