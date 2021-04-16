@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
 import axios from "axios";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Challengebutton from "./Challengebutton";
+=======
+import Backgrcolorchange from "./Backgrcolorchange";
+import ChallengeButton from "./Buttons/ChallengeButton";
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
 =======
 import Backgrcolorchange from "./Backgrcolorchange";
 import ChallengeButton from "./Buttons/ChallengeButton";
@@ -109,7 +114,12 @@ const Home = ({
         {inChallenge && <h3>You're in the {selectedChallenge} Challenge</h3>}
       </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Challengebutton />
+=======
+
+      {!inChallenge && <ChallengeButton />}
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
 =======
 
       {!inChallenge && <ChallengeButton />}
