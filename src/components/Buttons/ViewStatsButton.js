@@ -1,6 +1,8 @@
 import React from "react";
 import "../../styles/ChallengeButton.scss";
 
+// PARENT : USER IN CHALLENGE
+
 const ViewStatsButton = ({ endChallenge }) => {
   return (
     <div className="start-challenges_button_container">

@@ -4,6 +4,8 @@ import axios from "axios";
 import EndChallengeButton from "./Buttons/EndChallengeButton";
 import ViewStatsButton from "./Buttons/ViewStatsButton";
 
+// PARENT : SELECT A CHALLENGE
+
 const UserInChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
@@ -15,19 +17,19 @@ const UserInChallenge = ({
   let IN_CHALLENGE = "inChallenge";
   const CHALLENGE_SELECTED = "challengeSelected";
 
+  // HOW TO END THE CHALLENGE
   function endChallenge() {
-    console.log(
-      "FUNC endChallenge | USERINCHALLENGE | Goodbye challenge, we hardly knew you."
-    );
+    console.log("Goodbye challenge, we hardly knew you.");
     setInChallenge(false);
     setSelectedChallenge("");
+    window.localStorage.setItem(IN_CHALLENGE, false);
+    window.localStorage.setItem(CHALLENGE_SELECTED, null);
     return axios.delete(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`);
   }
 
+  // HANDLER FOR ENDING CHALLENGE
   function handleEndChallenge() {
     endChallenge();
-    window.localStorage.setItem(IN_CHALLENGE, false);
-    window.localStorage.setItem(CHALLENGE_SELECTED, null);
   }
 
   return (

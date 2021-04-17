@@ -3,57 +3,44 @@ import KmToMButton from "./Buttons/KmToMButton";
 import ChallengesList from "./ChallengesList";
 import StartChallengeButton from "./Buttons/StartChallengeButton";
 
+// PARENT : SELECT A CHALLENGE
+
 const UserIsNotInChallenge = ({
   toggleIsOn,
   isOn,
   challengeData,
   ConvertKmToM,
-  handlePostUserChallengeRequest,
+  postUserChallengeRequest,
   handleChallengeStart,
   handleChallengeSelect,
-  selectedChallenge,
   setSelectedChallenge,
   setInChallenge,
+  selectedChallenge,
+  challengeDistance,
   challengeDuration,
+  setChallengeDistance,
+  setChallengeDuration,
 }) => {
-  const [postChallengeDuration, setChallengeDuration] = useState("");
-  const [postChallengeDistance, setChallengeDistance] = useState("");
-
   return (
     <>
-      {!selectedChallenge && (
-        <>
-          <div className="start-challenges-container_other">
-            <h1>
-              Time for a new challenge? Select one, then double click to...
-            </h1>
-          </div>
-        </>
-      )}
-      {selectedChallenge && (
-        <>
-          <div className="start-challenges-container_other">
-            <h1>
-              Time for a new challenge? Select one, then double click to...
-            </h1>
-            <h1>{selectedChallenge}</h1>
-          </div>
-        </>
-      )}
+      <div className="start-challenges-container_other">
+        <h1>Time for a new challenge? Select one, then double click to...</h1>
+        <h1>{selectedChallenge}</h1>
+      </div>
+
       <StartChallengeButton
-        handlePostUserChallengeRequest={handlePostUserChallengeRequest}
-        postSelectedChallenge={selectedChallenge}
-        postChallengeDuration={postChallengeDuration}
-        postChallengeDistance={postChallengeDistance}
+        postUserChallengeRequest={postUserChallengeRequest}
         setSelectedChallenge={setSelectedChallenge}
         setInChallenge={setInChallenge}
+        selectedChallenge={selectedChallenge}
+        challengeDistance={challengeDistance}
         challengeDuration={challengeDuration}
       />
       <KmToMButton toggleIsOn={toggleIsOn} isOn={isOn} />
       <ChallengesList
         challengeData={challengeData}
         ConvertKmToM={ConvertKmToM}
-        handlePostUserChallengeRequest={handlePostUserChallengeRequest}
+        postUserChallengeRequest={postUserChallengeRequest}
         handleChallengeSelect={handleChallengeSelect}
         isOn={isOn}
         selectedChallenge={selectedChallenge}

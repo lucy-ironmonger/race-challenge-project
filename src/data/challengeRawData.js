@@ -7,7 +7,7 @@ const challengeRawData = [
   { challengeName: "The M1", duration: 62, distance: 311400 },
   {
     challengeName: "The Channel Tunnel",
-    durationOfChallenge: 80,
+    duration: 80,
     distance: 50500,
   },
   {

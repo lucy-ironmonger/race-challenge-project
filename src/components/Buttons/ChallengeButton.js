@@ -2,6 +2,8 @@ import React from "react";
 import "../../styles/ChallengeButton.scss";
 import { Link } from "react-router-dom";
 
+// PARENT : HOME
+
 const ChallengeButton = () => {
   return (
     <>
