@@ -9,7 +9,7 @@ import SelectAChallenge from "./components/SelectAChallenge";
 import UseToggle from "./controllers/UseToggle";
 import challengeRawData from "./data/challengeRawData.js";
 
-// APP
+// APP COMPONENT
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [challengeData, setChallengeData] = useState(challengeRawData);
