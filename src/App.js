@@ -17,10 +17,15 @@ const App = () => {
   const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
   const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
+  const [unixCreatedAt, setUnixCreatedAt] = useState("");
   const [challengeDistance, setChallengeDistance] = useState("");
 
   const CHALLENGE_SELECTED = "challengeSelected";
   let IN_CHALLENGE = "inChallenge";
+
+  const dateCreatedInUnixTime = (createdAt) => {
+    return new Date(createdAt).getTime();
+  };
 
   const handleChallengeStart = (challenge) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
@@ -35,6 +40,7 @@ const App = () => {
   };
 
   const handleChallengeData = (createdAt, challengeDistance) => {
+    setUnixCreatedAt(dateCreatedInUnixTime(createdAt));
     setChallengeCreatedAt(createdAt);
     setChallengeDistance(challengeDistance);
   };
@@ -67,6 +73,7 @@ const App = () => {
             setInChallenge={setInChallenge}
             handleChallengeData={handleChallengeData}
             challengeCreatedAt={challengeCreatedAt}
+            unixCreatedAt={unixCreatedAt}
             challengeDistance={challengeDistance}
           />
         </Route>

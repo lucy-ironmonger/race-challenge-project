@@ -28,7 +28,7 @@ const Challenge = ({
   useEffect(() => {
     setPostChallengeDistance(challengeDistance);
     setPostChallengeDuration(challengeDuration);
-  }, []);
+  });
 
   return (
     <div
