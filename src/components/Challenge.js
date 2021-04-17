@@ -10,8 +10,8 @@ const Challenge = ({
   postUserChallengeRequest,
   inChallenge,
   selectedChallenge,
-  setPostChallengeDistance,
-  setPostChallengeDuration,
+  setChallengeDistance,
+  setChallengeDuration,
   clicked,
   handleClick,
 }) => {
@@ -21,8 +21,8 @@ const Challenge = ({
   //
 
   useEffect(() => {
-    setPostChallengeDistance(challengeDistance);
-    setPostChallengeDuration(challengeDuration);
+    setChallengeDistance(challengeDistance);
+    setChallengeDuration(challengeDuration);
   });
 
   return (

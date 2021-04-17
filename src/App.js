@@ -14,18 +14,22 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [challengeData, setChallengeData] = useState(challengeRawData);
   const [inChallenge, setInChallenge] = useState(false);
-  const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
-  const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
+  const [selectedChallenge, setSelectedChallenge] = useState("");
   const [unixCreatedAt, setUnixCreatedAt] = useState("");
+  const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
   const [challengeDistance, setChallengeDistance] = useState("");
+  const [challengeDuration, setChallengeDuration] = useState(0);
 
   const CHALLENGE_SELECTED = "challengeSelected";
   let IN_CHALLENGE = "inChallenge";
 
+  // CONVERTS DATE TO UNIX TIMESTAMP
   const dateCreatedInUnixTime = (createdAt) => {
     return new Date(createdAt).getTime();
   };
+
+  // WHEN YOU HIT START CHALLENGE, IT SAVES STATE AND LOCALSTORAGE TO CONFIRM (INCASE OF REFRESH)
 
   const handleChallengeStart = (challenge) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
@@ -34,17 +38,29 @@ const App = () => {
     setInChallenge(true);
   };
 
+  // WHEN YOU SELECT A CHALLENGE, IT SAVES STATE
   const handleChallengeSelect = (challenge) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
     setSelectedChallenge(challenge);
+    setChallengeDistance(challengeDistance);
+    setChallengeDuration(challengeDuration);
+    console.log(`You've selected the ${challenge} challenge`);
   };
 
-  const handleChallengeData = (createdAt, challengeDistance) => {
+  // CONFIRMS ALL THE MAIN INFO WHEN A CHALLENGE IS STARTED
+  // IS DISTANCE AND DURATION NEEDED?
+  const handleChallengeData = (
+    createdAt,
+    challengeDistance,
+    challengeDuration
+  ) => {
     setUnixCreatedAt(dateCreatedInUnixTime(createdAt));
     setChallengeCreatedAt(createdAt);
     setChallengeDistance(challengeDistance);
+    setChallengeDuration(challengeDuration);
   };
 
+  // ASSISTS LOGIN OAUTH
   useEffect(() => {
     const accessTokenCheck = async () => {
       let accessToken;
@@ -103,6 +119,10 @@ const App = () => {
               challengeData={challengeData}
               inChallenge={inChallenge}
               setInChallenge={setInChallenge}
+              challengeDuration={challengeDuration}
+              setChallengeDuration={setChallengeDuration}
+              challengeDistance={challengeDistance}
+              setChallengeDistance={setChallengeDistance}
             />
           )}
         />

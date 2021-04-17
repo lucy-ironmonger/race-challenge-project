@@ -27,7 +27,7 @@ const Home = ({
   unixCreatedAt,
   challengeDistance,
 }) => {
-  // // CHECK IF USER IS IN A CHALLENGE AND SET STATE
+  // CHECK IF USER IS IN A CHALLENGE AND SET STATE
 
   useEffect(() => {
     const getRequestUserChallengeDb = async () => {
@@ -44,9 +44,6 @@ const Home = ({
             handleChallengeData(res.data.createdAt, res.data.currentDistance);
           }
           if (res.status === 201) {
-            console.log(
-              "GET REQ HOME You ain't in a challenge mate. Join one!"
-            );
             setInChallenge(false);
             window.localStorage.setItem(IN_CHALLENGE, false);
           }
@@ -56,9 +53,7 @@ const Home = ({
         });
     };
     getRequestUserChallengeDb();
-  }, []);
-
-  console.log(unixCreatedAt);
+  });
 
   // const getRequestUserChallengeDb = async () => {
   //   if (STRAVA_ID) {

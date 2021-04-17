@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Challenge from "./Challenge";
 
+// PARENT: USER NOT IN CHALLENGE
+
 const ChallengesList = ({
   ConvertKmToM,
   onChallengeSelect,
@@ -9,8 +11,8 @@ const ChallengesList = ({
   selectedChallenge,
   challengeData,
   handleChallengeSelect,
-  setPostChallengeDistance,
-  setPostChallengeDuration,
+  setChallengeDistance,
+  setChallengeDuration,
 }) => {
   const [clickedChallenge, setClickedChallenge] = useState();
 
@@ -21,12 +23,11 @@ const ChallengesList = ({
   return (
     <div>
       {challengeData.map((challenge) => {
-        console.log(challenge);
         return (
           <Challenge
             challengeName={challenge.challengeName}
             challengeDistance={challenge.distance}
-            challengeDuration={challenge.durationOfChallenge}
+            challengeDuration={challenge.duration}
             key={challenge.challengeName}
             onChallengeSelect={onChallengeSelect}
             convertKmToM={ConvertKmToM}
@@ -34,8 +35,8 @@ const ChallengesList = ({
             isOn={isOn}
             selectedChallenge={selectedChallenge}
             handleChallengeSelect={handleChallengeSelect}
-            setPostChallengeDistance={setPostChallengeDistance}
-            setPostChallengeDuration={setPostChallengeDuration}
+            setChallengeDistance={setChallengeDistance}
+            setChallengeDuration={setChallengeDuration}
             handleClick={handleClick}
             clicked={clickedChallenge === challenge.challengeName}
           />
