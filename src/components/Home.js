@@ -24,6 +24,7 @@ const Home = ({
   setInChallenge,
   handleChallengeData,
   challengeCreatedAt,
+  unixCreatedAt,
   challengeDistance,
 }) => {
   // // CHECK IF USER IS IN A CHALLENGE AND SET STATE
@@ -55,7 +56,9 @@ const Home = ({
         });
     };
     getRequestUserChallengeDb();
-  });
+  }, []);
+
+  console.log(unixCreatedAt);
 
   // const getRequestUserChallengeDb = async () => {
   //   if (STRAVA_ID) {
@@ -159,7 +162,6 @@ const Home = ({
 
 export default Home;
 
-// Parse date to a unix timestamp + save in a variable challengeStartUnix
 // New variable which is challengeDurationUnix which is the no of days of challenge x 86400
 // New variable challengeEndUnix which is challengeStartUnix + challengeDurationUnix
 // You now have the variables for the filter

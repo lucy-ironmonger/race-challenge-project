@@ -18,7 +18,7 @@ const challengeRawData = [
   {
     challengeName: "Land's End to John O Groat's",
     durationOfChallenge: 195,
-    distance: 1407000,
+    distance: 140700,
   },
 ];
 
