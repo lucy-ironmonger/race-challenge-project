@@ -25,9 +25,7 @@ const UserIsNotInChallenge = ({
     <>
       <div className="start-challenges-container_other">
         <h1>Time for a new challenge? Select one, then double click to...</h1>
-        <h1>{selectedChallenge}</h1>
       </div>
-
       <StartChallengeButton
         postUserChallengeRequest={postUserChallengeRequest}
         setSelectedChallenge={setSelectedChallenge}
@@ -36,6 +34,9 @@ const UserIsNotInChallenge = ({
         challengeDistance={challengeDistance}
         challengeDuration={challengeDuration}
       />
+      <div className="start-challenges-container_other">
+        <h1>{selectedChallenge}</h1>
+      </div>
       <KmToMButton toggleIsOn={toggleIsOn} isOn={isOn} />
       <ChallengesList
         challengeData={challengeData}

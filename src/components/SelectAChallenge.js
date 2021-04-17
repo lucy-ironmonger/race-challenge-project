@@ -41,7 +41,10 @@ const SelectAChallenge = ({
         .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
         .then((res) => {
           if (res.status === 200) {
-            console.log("You're already in a challenge.", res.data);
+            console.log(
+              `You're already in the ${selectedChallenge} challenge.`,
+              res.data
+            );
             handleChallengeStart(
               res.data.currentChallenge,
               res.data.createdAt,
@@ -70,28 +73,26 @@ const SelectAChallenge = ({
     challengeDistance,
     challengeDuration
   ) {
-    if (window.localStorage.challengeSelected) {
-      console.log(`You've joined the ${challengeName} challenge!`);
-      setChallengeDistance();
-      window.localStorage.setItem(IN_CHALLENGE, true);
-      window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
+    console.log(`You've joined the ${challengeName} challenge!`);
+    setChallengeDistance();
+    window.localStorage.setItem(IN_CHALLENGE, true);
+    window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
 
-      return axios({
-        method: "post",
-        url: USER_CHALLENGE_DB_LINK,
-        data: {
-          stravaId: STRAVA_ID,
-          username: USER_NAME,
-          currentChallenge: challengeName,
-          distance: challengeDistance,
-          duration: challengeDuration,
-        },
-      })
-        .then((res) => console.log(res))
-        .catch((error) => {
-          throw error;
-        });
-    }
+    return axios({
+      method: "post",
+      url: USER_CHALLENGE_DB_LINK,
+      data: {
+        stravaId: STRAVA_ID,
+        username: USER_NAME,
+        currentChallenge: challengeName,
+        distance: challengeDistance,
+        duration: challengeDuration,
+      },
+    })
+      .then((res) => console.log(res))
+      .catch((error) => {
+        throw error;
+      });
   }
 
   // const postUserChallengeRequest = (

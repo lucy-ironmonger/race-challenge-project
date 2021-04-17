@@ -30,19 +30,12 @@ const App = () => {
   };
 
   // WHEN YOU HIT START CHALLENGE, IT SAVES STATE AND LOCALSTORAGE TO CONFIRM (INCASE OF REFRESH)
-  const handleChallengeStart = (
-    challengeName,
-    createdAt,
-    challengeDistance,
-    challengeDuration
-  ) => {
-    window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
+
+  const handleChallengeStart = (challenge) => {
+    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
     window.localStorage.setItem(IN_CHALLENGE, true);
-    setSelectedChallenge(challengeName);
+    setSelectedChallenge(challenge);
     setInChallenge(true);
-    setChallengeCreatedAt(createdAt);
-    setChallengeDistance(challengeDistance);
-    setChallengeDuration(challengeDuration);
   };
 
   // WHEN YOU SELECT A CHALLENGE, IT SAVES STATE
