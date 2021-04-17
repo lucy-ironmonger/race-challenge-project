@@ -18,7 +18,7 @@ const CHALLENGE_SELECTED = "challengeSelected";
 // 200 = user is in one
 
 const Home = ({
-  handleChallengeSelect,
+  handleChallengeStart,
   selectedChallenge,
   inChallenge,
   setInChallenge,
@@ -35,7 +35,7 @@ const Home = ({
             );
             console.log(res.data);
             let yourCurrentChallenge = res.data.currentChallenge;
-            handleChallengeSelect(yourCurrentChallenge);
+            handleChallengeStart(yourCurrentChallenge);
             setInChallenge(true);
             window.localStorage.setItem(IN_CHALLENGE, true);
           }

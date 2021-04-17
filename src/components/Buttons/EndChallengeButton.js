@@ -5,7 +5,7 @@ const EndChallengeButton = ({ handleEndChallenge }) => {
   return (
     <div className="start-challenges_button_container">
       <div className="end-challenges_button" onClick={handleEndChallenge}>
-        End Challenge! 😱
+        End Current Challenge 😱
       </div>
     </div>
   );

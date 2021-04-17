@@ -34,7 +34,7 @@ const UserInChallenge = ({
     <>
       <div className="page_container">
         <h2>You're in the</h2>
-        <h2>{window.localStorage.challengeSelected} Challenge</h2>
+        <h2>{selectedChallenge} Challenge</h2>
         <h3 className="start-challenge_legend">What a legend. Keep going!</h3>
       </div>
       <div>

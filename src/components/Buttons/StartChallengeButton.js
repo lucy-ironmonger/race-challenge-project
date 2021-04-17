@@ -18,7 +18,7 @@ const StartChallengeButton = ({
           )
         }
       >
-        Start Challenge! 🚀
+        Start New Challenge! 🚀
       </div>
     </div>
   );

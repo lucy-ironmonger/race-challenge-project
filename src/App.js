@@ -18,9 +18,17 @@ const App = () => {
   const [isOn, toggleIsOn] = UseToggle();
 
   const CHALLENGE_SELECTED = "challengeSelected";
+  let IN_CHALLENGE = "inChallenge";
+
+  const handleChallengeStart = (challenge) => {
+    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
+    window.localStorage.setItem(IN_CHALLENGE, true);
+    setSelectedChallenge(challenge);
+    setInChallenge(true);
+  };
 
   const handleChallengeSelect = (challenge) => {
-    window.localStorage.setItem("challengeSelected", challenge);
+    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
     setSelectedChallenge(challenge);
   };
 
@@ -47,7 +55,7 @@ const App = () => {
           <Home
             selectedChallenge={selectedChallenge}
             setSelectedChallenge={setSelectedChallenge}
-            handleChallengeSelect={handleChallengeSelect}
+            handleChallengeStart={handleChallengeStart}
             inChallenge={inChallenge}
             setInChallenge={setInChallenge}
           />
@@ -73,6 +81,7 @@ const App = () => {
               toggleIsOn={toggleIsOn}
               selectedChallenge={selectedChallenge}
               setSelectedChallenge={setSelectedChallenge}
+              handleChallengeStart={handleChallengeStart}
               handleChallengeSelect={handleChallengeSelect}
               challengeData={challengeData}
               inChallenge={inChallenge}

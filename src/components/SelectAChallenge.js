@@ -9,6 +9,7 @@ import UserIsNotInChallenge from "./UserIsNotInChallenge";
 const SelectAChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
+  handleChallengeStart,
   handleChallengeSelect,
   toggleIsOn,
   isOn,
@@ -21,36 +22,34 @@ const SelectAChallenge = ({
   const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
   let USER_NAME = window.localStorage.username;
   let STRAVA_ID = window.localStorage.stravaId;
-  let IN_CHALLENGE = "inChallenge";
+
   const CHALLENGE_SELECTED = "challengeSelected";
+  let IN_CHALLENGE = "inChallenge";
+
   // CHECK IF USER IS IN A CHALLENGE AND SET STATE
 
-  // useEffect(() => {
-  // const getRequestUserChallengeDb = async () => {
-  //   await axios
-  //     .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         console.log("Yes keen bean! You're in a challenge.");
-  //         console.log(res.data.currentChallenge);
-  //         let yourCurrentChallenge = res.data.currentChallenge;
-  //         handleChallengeSelect(yourCurrentChallenge);
-  //         setInChallenge(true);
-  //         window.localStorage.setItem(IN_CHALLENGE, true);
-  //       }
-  //       if (res.status === 201) {
-  //         console.log("You ain't in a challenge mate. Join one!");
-  //         setInChallenge(false);
-  //         window.localStorage.setItem(IN_CHALLENGE, false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // };
+  useEffect(() => {
+    const getRequestUserChallengeDb = async () => {
+      await axios
+        .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log("You're already in a challenge.", res.data);
+            handleChallengeStart(res.data.currentChallenge);
+          }
+          if (res.status === 201) {
+            console.log("You ain't in a challenge mate. Join one!");
+            setInChallenge(false);
+            window.localStorage.setItem(IN_CHALLENGE, false);
+          }
+        })
+        .catch((error) => {
+          throw error;
+        });
+    };
 
-  // getRequestUserChallengeDb();
-  // }, []);
+    getRequestUserChallengeDb();
+  });
 
   // USER WANTS TO JOIN A CHALLENGE
 
@@ -100,7 +99,8 @@ const SelectAChallenge = ({
         setInChallenge={setInChallenge}
         stravaId={stravaId}
       /> */}
-      {window.localStorage.inChallenge === true ? (
+
+      {inChallenge === true ? (
         <UserInChallenge
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}
@@ -115,6 +115,7 @@ const SelectAChallenge = ({
           challengeData={challengeData}
           ConvertKmToM={ConvertKmToM}
           handlePostUserChallengeRequest={handlePostUserChallengeRequest}
+          handleChallengeStart={handleChallengeStart}
           handleChallengeSelect={handleChallengeSelect}
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}

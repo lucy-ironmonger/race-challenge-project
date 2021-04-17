@@ -9,6 +9,7 @@ const UserIsNotInChallenge = ({
   challengeData,
   ConvertKmToM,
   handlePostUserChallengeRequest,
+  handleChallengeStart,
   handleChallengeSelect,
   selectedChallenge,
   setSelectedChallenge,
@@ -22,7 +23,7 @@ const UserIsNotInChallenge = ({
       {!selectedChallenge && (
         <>
           <div className="start-challenges-container_other">
-            <h1>Select a challenge below.</h1>
+            <h1>Select a challenge, then double click to...</h1>
           </div>
         </>
       )}
