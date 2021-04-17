@@ -47,7 +47,6 @@ const SelectAChallenge = ({
           throw error;
         });
     };
-
     getRequestUserChallengeDb();
   });
 

@@ -16,6 +16,8 @@ const App = () => {
   const [inChallenge, setInChallenge] = useState(false);
   const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
+  const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
+  const [challengeDistance, setChallengeDistance] = useState("");
 
   const CHALLENGE_SELECTED = "challengeSelected";
   let IN_CHALLENGE = "inChallenge";
@@ -30,6 +32,11 @@ const App = () => {
   const handleChallengeSelect = (challenge) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
     setSelectedChallenge(challenge);
+  };
+
+  const handleChallengeData = (createdAt, challengeDistance) => {
+    setChallengeCreatedAt(createdAt);
+    setChallengeDistance(challengeDistance);
   };
 
   useEffect(() => {
@@ -58,6 +65,9 @@ const App = () => {
             handleChallengeStart={handleChallengeStart}
             inChallenge={inChallenge}
             setInChallenge={setInChallenge}
+            handleChallengeData={handleChallengeData}
+            challengeCreatedAt={challengeCreatedAt}
+            challengeDistance={challengeDistance}
           />
         </Route>
         <Route path="/login" component={Login} />

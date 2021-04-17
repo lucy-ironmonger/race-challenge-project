@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React, { useState } from "react";
-import "../styles/Challenge.scss";
-=======
 import React, { useState, useEffect } from "react";
->>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
-=======
-import React, { useState, useEffect } from "react";
->>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
 
 const Challenge = ({
   challengeName,

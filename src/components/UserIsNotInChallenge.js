@@ -23,14 +23,18 @@ const UserIsNotInChallenge = ({
       {!selectedChallenge && (
         <>
           <div className="start-challenges-container_other">
-            <h1>Select a challenge, then double click to...</h1>
+            <h1>
+              Time for a new challenge? Select one, then double click to...
+            </h1>
           </div>
         </>
       )}
       {selectedChallenge && (
         <>
           <div className="start-challenges-container_other">
-            <h1>Time for a new challenge?</h1>
+            <h1>
+              Time for a new challenge? Select one, then double click to...
+            </h1>
             <h1>{selectedChallenge}</h1>
           </div>
         </>
