@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
 import axios from "axios";
+<<<<<<< HEAD
+<<<<<<< HEAD
+import Challengebutton from "./Challengebutton";
+=======
 import Backgrcolorchange from "./Backgrcolorchange";
 import ChallengeButton from "./Buttons/ChallengeButton";
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
+=======
+import Backgrcolorchange from "./Backgrcolorchange";
+import ChallengeButton from "./Buttons/ChallengeButton";
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
 
 const USER_DB_LINK = "http://localhost:4001/users";
 const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
@@ -104,8 +113,17 @@ const Home = ({
         <h2>Hi {window.localStorage.firstName}</h2>
         {inChallenge && <h3>You're in the {selectedChallenge} Challenge</h3>}
       </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <Challengebutton />
+=======
 
       {!inChallenge && <ChallengeButton />}
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
+=======
+
+      {!inChallenge && <ChallengeButton />}
+>>>>>>> e52bc2bbb220635691acb9d49c370be219bd2e08
     </>
   );
 };

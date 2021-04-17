@@ -1,5 +1,12 @@
+$appcolor: #fc5200;
+$logoheigth: 5em;
+$logowidth: 5em;
+$fontsize-m: 2em;
+$logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
+  contrast(80%);
+
 .start-challenges-container-orange {
-  background: orange;
+  background: $appcolor;
 }
 
 .start-challenges-container-white {
