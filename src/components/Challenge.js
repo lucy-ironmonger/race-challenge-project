@@ -12,18 +12,13 @@ const Challenge = ({
   selectedChallenge,
   setPostChallengeDistance,
   setPostChallengeDuration,
+  clicked,
+  handleClick,
 }) => {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  // const [click, setClick] = useState(false);
+  // const handleClick = () => setClick(!click);
 
-  const onClickChange = () => {
-    if (click) {
-      return "start-challenges-container-orange";
-    } else if (!click) {
-      return "start-challenges-container-white";
-    }
-    handleClick();
-  };
+  //
 
   useEffect(() => {
     setPostChallengeDistance(challengeDistance);
@@ -33,7 +28,7 @@ const Challenge = ({
   return (
     <div
       className={
-        click
+        clicked
           ? "select-challenges-container-orange"
           : "select-challenges-container-white"
       }
@@ -51,7 +46,7 @@ const Challenge = ({
           <button
             className="select-challenges_button"
             onClick={() => {
-              handleClick();
+              handleClick(challengeName);
               handleChallengeSelect(challengeName);
             }}
           >

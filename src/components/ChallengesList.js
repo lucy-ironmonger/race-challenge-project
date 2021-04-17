@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Challenge from "./Challenge";
 
 const ChallengesList = ({
@@ -12,9 +12,16 @@ const ChallengesList = ({
   setPostChallengeDistance,
   setPostChallengeDuration,
 }) => {
+  const [clickedChallenge, setClickedChallenge] = useState();
+
+  const handleClick = (challengeName) => {
+    setClickedChallenge(challengeName);
+  };
+
   return (
     <div>
       {challengeData.map((challenge) => {
+        console.log(challenge);
         return (
           <Challenge
             challengeName={challenge.challengeName}
@@ -29,6 +36,8 @@ const ChallengesList = ({
             handleChallengeSelect={handleChallengeSelect}
             setPostChallengeDistance={setPostChallengeDistance}
             setPostChallengeDuration={setPostChallengeDuration}
+            handleClick={handleClick}
+            clicked={clickedChallenge === challenge.challengeName}
           />
         );
       })}
