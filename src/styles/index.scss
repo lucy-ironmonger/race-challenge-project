@@ -23,10 +23,18 @@ body {
   box-sizing: border-box; /* IE */
 }
 
-.homepage_container {
+.page_container {
   display: block;
   justify-content: center;
   text-align: center;
-  color: $appcolor;
+  color: black;
   font-size: 2em;
+}
+
+.start-challenges-container-orange {
+  background: $appcolor;
+}
+
+.start-challenges-container-white {
+  background: transparent;
 }

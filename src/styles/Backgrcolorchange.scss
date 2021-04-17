@@ -1,0 +1,19 @@
+.container {
+  border: solid black 4px;
+  display: block;
+  margin-top: 30px;
+  width: 400px;
+  text-align: center;
+}
+
+button {
+  border-radius: 5px;
+  padding-top: 5px;
+}
+
+.container-white {
+  background: white;
+}
+.container-orange {
+  background: orange;
+}

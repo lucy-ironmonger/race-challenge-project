@@ -9,16 +9,34 @@ import SelectAChallenge from "./components/SelectAChallenge";
 import UseToggle from "./controllers/UseToggle";
 import challengeRawData from "./data/challengeRawData.js";
 
-// APP
+// APP COMPONENT
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [challengeData, setChallengeData] = useState(challengeRawData);
   const [inChallenge, setInChallenge] = useState(false);
-  const [savedChallenge, setSavedChallenge] = useState("");
+  const [selectedChallenge, setSelectedChallenge] = useState("");
   const [isOn, toggleIsOn] = UseToggle();
+  const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
+  const [challengeDistance, setChallengeDistance] = useState("");
 
-  const handleChallengeSave = (challenge) => {
-    setSavedChallenge(challenge);
+  const CHALLENGE_SELECTED = "challengeSelected";
+  let IN_CHALLENGE = "inChallenge";
+
+  const handleChallengeStart = (challenge) => {
+    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
+    window.localStorage.setItem(IN_CHALLENGE, true);
+    setSelectedChallenge(challenge);
+    setInChallenge(true);
+  };
+
+  const handleChallengeSelect = (challenge) => {
+    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
+    setSelectedChallenge(challenge);
+  };
+
+  const handleChallengeData = (createdAt, challengeDistance) => {
+    setChallengeCreatedAt(createdAt);
+    setChallengeDistance(challengeDistance);
   };
 
   useEffect(() => {
@@ -42,11 +60,14 @@ const App = () => {
       <Router>
         <Route path="/" exact>
           <Home
-            savedChallenge={savedChallenge}
-            setSavedChallenge={setSavedChallenge}
-            handleChallengeSave={handleChallengeSave}
+            selectedChallenge={selectedChallenge}
+            setSelectedChallenge={setSelectedChallenge}
+            handleChallengeStart={handleChallengeStart}
             inChallenge={inChallenge}
             setInChallenge={setInChallenge}
+            handleChallengeData={handleChallengeData}
+            challengeCreatedAt={challengeCreatedAt}
+            challengeDistance={challengeDistance}
           />
         </Route>
         <Route path="/login" component={Login} />
@@ -68,9 +89,10 @@ const App = () => {
             <SelectAChallenge
               isOn={isOn}
               toggleIsOn={toggleIsOn}
-              savedChallenge={savedChallenge}
-              setSavedChallenge={setSavedChallenge}
-              handleChallengeSave={handleChallengeSave}
+              selectedChallenge={selectedChallenge}
+              setSelectedChallenge={setSelectedChallenge}
+              handleChallengeStart={handleChallengeStart}
+              handleChallengeSelect={handleChallengeSelect}
               challengeData={challengeData}
               inChallenge={inChallenge}
               setInChallenge={setInChallenge}

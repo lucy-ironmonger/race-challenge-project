@@ -1,5 +1,4 @@
 /* variables */
-/* variables */
 $appcolor: #fc5200;
 $logoheigth: 5em;
 $logowidth: 5em;
@@ -127,7 +126,7 @@ nav.navbar {
 }
 
 .hamburger-white {
-  color: white;
+  color: white !important;
 }
 
 .navbarLink-mobile.active {

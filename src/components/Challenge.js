@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Challenge = ({
   challengeName,
   challengeDistance,
   challengeDuration,
-  onChallengeSelect,
+  handleChallengeSelect,
   convertKmToM,
   isOn,
   postUserChallengeRequest,
-  savedChallenge,
+  inChallenge,
+  selectedChallenge,
+  setPostChallengeDistance,
+  setPostChallengeDuration,
 }) => {
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+
+  const onClickChange = () => {
+    if (click) {
+      return "start-challenges-container-orange";
+    } else if (!click) {
+      return "start-challenges-container-white";
+    }
+    handleClick();
+  };
+
+  useEffect(() => {
+    setPostChallengeDistance(challengeDistance);
+    setPostChallengeDuration(challengeDuration);
+  }, []);
+
   return (
-    <div className="start-challenges-container">
+    <div
+      className={
+        click
+          ? "select-challenges-container-orange"
+          : "select-challenges-container-white"
+      }
+    >
+      {/* <i className={onClickChange()} /> */}
       <h1>{challengeName}</h1>
       {isOn && (
         <h3>{`Distance: ${(challengeDistance / 1000).toFixed(2)} km`}</h3>
@@ -19,26 +46,19 @@ const Challenge = ({
       {!isOn && <h3>{`Distance: ${convertKmToM(challengeDistance)} miles`}</h3>}
       <h3>Time to Complete: {challengeDuration} Days</h3>
 
-      {savedChallenge && (
-        <button
-          onClick={() =>
-            postUserChallengeRequest(
-              challengeName,
-              challengeDistance,
-              challengeDuration
-            )
-          }
-        >
-          Select Challenge
-        </button>
+      {!inChallenge && (
+        <div className="select-challenges_button_container">
+          <button
+            className="select-challenges_button"
+            onClick={() => {
+              handleClick();
+              handleChallengeSelect(challengeName);
+            }}
+          >
+            Select Challenge
+          </button>
+        </div>
       )}
-
-      {/* <button
-        className="start-challenges_button"
-        onClick={() => onChallengeSelect(challengeName)}
-      >
-        Start Challenge
-      </button> */}
     </div>
   );
 };
