@@ -20,7 +20,7 @@ $logocolor: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(0%)
 //   filter: white;
 // }
 
-nav.navbar {
+.navbar {
   // background: $appcolor;
   background: transparent;
   height: 80px;
@@ -31,9 +31,9 @@ nav.navbar {
   position: sticky;
   top: 0;
   z-index: 10;
-  @media screen and (max-width: 960px) {
-    transition: 0.8s all ease;
-  }
+  // @media screen and (max-width: 960px) {
+  //   transition: 0.8s all ease;
+  // }
 }
 
 .navbar.active {
@@ -157,8 +157,8 @@ nav.navbar {
 
   .navbar_menu.active {
     background: #fff;
-    // display: flex;
-    // align-items: center;
+    display: flex;
+    align-items: center;
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
