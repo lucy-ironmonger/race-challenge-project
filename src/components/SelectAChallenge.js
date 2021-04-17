@@ -17,6 +17,7 @@ const SelectAChallenge = ({
   inChallenge,
   setInChallenge,
   stravaId,
+  challengeDuration,
 }) => {
   const USER_DB_LINK = "http://localhost:4001/users";
   const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
@@ -52,7 +53,11 @@ const SelectAChallenge = ({
 
   // USER WANTS TO JOIN A CHALLENGE
 
-  function postUserChallengeRequest(challengeName, challengeDistance) {
+  function postUserChallengeRequest(
+    challengeName,
+    challengeDistance,
+    challengeDuration
+  ) {
     console.log(
       "POST REQUEST postUserChallengeRequest to USERCHALLENGE | SELECT A CHALLENGE : New user challenge added to database"
     );
@@ -67,8 +72,8 @@ const SelectAChallenge = ({
         stravaId: STRAVA_ID,
         username: USER_NAME,
         currentChallenge: challengeName,
-        currentDistance: challengeDistance,
-        remainingDistance: challengeDistance,
+        distance: challengeDistance,
+        duration: challengeDuration,
       },
     })
       .then((res) => console.log(res))
@@ -77,12 +82,20 @@ const SelectAChallenge = ({
       });
   }
 
-  const handlePostUserChallengeRequest = (challengeName, challengeDistance) => {
+  const handlePostUserChallengeRequest = (
+    challengeName,
+    challengeDistance,
+    challengeDuration
+  ) => {
     if (window.localStorage.challengeSelected) {
       console.log(
         "START CHALLENGE BUTTON ONCLICK | FUNC handlePostUserChallengeRequest | SELECT A CHALLENGE"
       );
-      postUserChallengeRequest(challengeName, challengeDistance);
+      postUserChallengeRequest(
+        challengeName,
+        challengeDistance,
+        challengeDuration
+      );
       setInChallenge(true);
       setSelectedChallenge(challengeName);
     }
@@ -91,14 +104,6 @@ const SelectAChallenge = ({
   return (
     <div>
       <Navbar />
-      {/* <UserInChallenge
-        selectedChallenge={selectedChallenge}
-        setSelectedChallenge={setSelectedChallenge}
-        inChallenge={inChallenge}
-        setInChallenge={setInChallenge}
-        stravaId={stravaId}
-      /> */}
-
       {inChallenge === true ? (
         <UserInChallenge
           selectedChallenge={selectedChallenge}
@@ -119,6 +124,7 @@ const SelectAChallenge = ({
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}
           setInChallenge={setInChallenge}
+          challengeDuration={challengeDuration}
         />
       )}
     </div>

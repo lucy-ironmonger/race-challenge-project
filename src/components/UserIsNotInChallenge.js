@@ -14,9 +14,10 @@ const UserIsNotInChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
   setInChallenge,
+  challengeDuration,
 }) => {
-  const [postChallengeDuration, setPostChallengeDuration] = useState("");
-  const [postChallengeDistance, setPostChallengeDistance] = useState("");
+  const [postChallengeDuration, setChallengeDuration] = useState("");
+  const [postChallengeDistance, setChallengeDistance] = useState("");
 
   return (
     <>
@@ -46,6 +47,7 @@ const UserIsNotInChallenge = ({
         postChallengeDistance={postChallengeDistance}
         setSelectedChallenge={setSelectedChallenge}
         setInChallenge={setInChallenge}
+        challengeDuration={challengeDuration}
       />
       <KmToMButton toggleIsOn={toggleIsOn} isOn={isOn} />
       <ChallengesList
@@ -56,8 +58,8 @@ const UserIsNotInChallenge = ({
         isOn={isOn}
         selectedChallenge={selectedChallenge}
         setSelectedChallenge={setSelectedChallenge}
-        setPostChallengeDistance={setPostChallengeDistance}
-        setPostChallengeDuration={setPostChallengeDuration}
+        setChallengeDistance={setChallengeDistance}
+        setChallengeDuration={setChallengeDuration}
       />
     </>
   );

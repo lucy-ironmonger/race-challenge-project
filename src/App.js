@@ -19,6 +19,7 @@ const App = () => {
   const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
   const [unixCreatedAt, setUnixCreatedAt] = useState("");
   const [challengeDistance, setChallengeDistance] = useState("");
+  const [challengeDuration, setChallengeDuration] = useState(0);
 
   const CHALLENGE_SELECTED = "challengeSelected";
   let IN_CHALLENGE = "inChallenge";
@@ -103,6 +104,8 @@ const App = () => {
               challengeData={challengeData}
               inChallenge={inChallenge}
               setInChallenge={setInChallenge}
+              challengeDuration={challengeDuration}
+              setChallengeDuration={setChallengeDuration}
             />
           )}
         />
