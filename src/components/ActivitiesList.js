@@ -34,6 +34,7 @@ const ActivitiesList = ({ loggedIn, isOn, toggleIsOn }) => {
     // ACTUAL USEEFFECT - THIS IS ONLY CALLED IF YOU ARE LOGGED IN
     if (loggedIn) {
       loadActivities();
+      console.log(activities);
     }
   }, [loggedIn]);
 

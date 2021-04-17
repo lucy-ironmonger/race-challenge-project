@@ -31,10 +31,11 @@ const App = () => {
 
   // WHEN YOU HIT START CHALLENGE, IT SAVES STATE AND LOCALSTORAGE TO CONFIRM (INCASE OF REFRESH)
 
-  const handleChallengeStart = (challenge) => {
+  const handleChallengeStart = (challenge, duration) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
     window.localStorage.setItem(IN_CHALLENGE, true);
     setSelectedChallenge(challenge);
+    setChallengeDuration(duration);
     setInChallenge(true);
   };
 
@@ -91,6 +92,8 @@ const App = () => {
             challengeCreatedAt={challengeCreatedAt}
             unixCreatedAt={unixCreatedAt}
             challengeDistance={challengeDistance}
+            challengeDuration={challengeDuration}
+            dateCreatedInUnixTime={dateCreatedInUnixTime}
           />
         </Route>
         <Route path="/login" component={Login} />
