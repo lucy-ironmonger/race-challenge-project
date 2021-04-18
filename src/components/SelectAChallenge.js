@@ -78,6 +78,11 @@ const SelectAChallenge = ({
     );
     window.localStorage.setItem(IN_CHALLENGE, true);
     window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
+<<<<<<< HEAD
+    window.localStorage.setItem(CHALLENGE_SELECTED, challengeDistance);
+    console.log("Changed inChallenge on localStorage to true");
+=======
+>>>>>>> e5b7e6b3c5fbbb645270cf5471d95f4054f6cee7
 
     return axios({
       method: "post",
