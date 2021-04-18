@@ -40,6 +40,7 @@ const App = () => {
     // Is there anything SELECTED? If no don't do anything.
     // If yes, set to active state
     // Then write to DB
+    // Test
     setActiveChallenge({
       name: selectedChallenge,
       distance: challengeDistance,
