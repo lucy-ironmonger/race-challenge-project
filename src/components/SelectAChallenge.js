@@ -73,8 +73,9 @@ const SelectAChallenge = ({
     challengeDistance,
     challengeDuration
   ) {
-    console.log(`You've joined the ${challengeName} challenge!`);
-    setChallengeDistance();
+    console.log(
+      `postUserChall | You've joined the ${challengeName} challenge!`
+    );
     window.localStorage.setItem(IN_CHALLENGE, true);
     window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
 

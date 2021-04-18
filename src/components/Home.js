@@ -44,10 +44,6 @@ const Home = ({
 }) => {
   // CHECK IF USER IS IN A CHALLENGE AND SET STATE
 
-  const endTimeInUnix = 1610281016000;
-
-  // const endTimeInUnix = unixCreatedAt + window.localStorage.duration * 86400000;
-
   const data = [
     {
       resource_state: 2,
@@ -225,6 +221,40 @@ const Home = ({
     },
   ];
 
+  const timeNow = Date.now();
+
+  // CHALLENGE DURATION
+  const timeElapsedDays = ((timeNow - unixCreatedAt) / 86400000).toFixed(2);
+  const timeElapsedUnix = timeNow - unixCreatedAt;
+  const challengeTotalDurationUnix = window.localStorage.duration * 86400000;
+  const durationLeftUnix = challengeTotalDurationUnix - timeElapsedUnix;
+  const durationLeftDays = (durationLeftUnix / 86400000).toFixed(2);
+
+  // CHALLENGE START
+  const challengeStart = unixCreatedAt;
+
+  // CHALLENGE END
+  const endTimeInUnix = challengeStart + challengeTotalDurationUnix;
+
+  console.log("time now", timeNow);
+  console.log("timeElapsedUnix", timeElapsedUnix);
+  console.log("timeElapsedDays", timeElapsedDays);
+  console.log("challengeTotalDurationUnix", challengeTotalDurationUnix);
+  console.log("durationLeftUnix", durationLeftUnix);
+  console.log("durationLeftDays", durationLeftDays);
+  console.log("challengeStart", challengeStart);
+  console.log("endTimeInUnix", endTimeInUnix);
+
+  // Runs span from 6th Jan - 10th Jan - 30th Jan
+
+  const testEndTimeInUnix = 1610281016000; // Jan 10th 2021
+  const testStartTime = 1610453816000; // Jan 11th 2021
+  const testEndTime = 1627989416000; // Aug 3rd 2021
+
+  console.log("testEndTimeInUnix", testEndTimeInUnix);
+  console.log("testEndTime", testEndTime);
+
+  // GETTING THE DISTANCE RUN IN THE CHALLENGE
   const myRuns = data.map((item) => {
     const container = {};
     container["kilometres"] = item.distance / 1000;
@@ -232,35 +262,26 @@ const Home = ({
     return container;
   });
 
-  console.log("mapped", myRuns);
+  console.log("mapped runs", myRuns);
 
   const filterMyRuns = myRuns.filter((item) => {
-    return item.unixTime <= endTimeInUnix;
+    return item.unixTime <= testEndTime && item.unixTime >= testStartTime;
   });
 
   console.log("filtered runs", filterMyRuns);
-
-  // const reducedFilterMyRuns = filterMyRuns.reduce((x, y) => {
-  // return x + y;
-  //
-
-  //   const reducedFilterMyRuns = filterMyRuns.distance()
-
-  var arr = [{ x: 1 }, { x: 2 }, { x: 4 }];
-
-  arr.reduce(function (a, b) {
-    return { x: a.x + b.x }; // returns object with property x
-  });
 
   const reducedFilterMyRuns = filterMyRuns.reduce(function (a, b) {
     return a.kilometres + b.kilometres; // returns object with property x
   });
 
-  //   const reducedFilterMyRuns = filterMyRuns.reduce(
-  // (a, b) => return (a.distance = b.distance)
-  //   );
-
   console.log("reduced runs", reducedFilterMyRuns);
+
+  // DISTANCE RUN IN CHALLENGE
+  const distanceCovered = reducedFilterMyRuns.kilometres.toFixed(2);
+
+  // DISTANCE REMAINING IN CHALLENGE
+
+  const remainingDistanceKm = challengeDistance / 1000;
 
   useEffect(() => {
     const getRequestUserChallengeDb = async () => {
@@ -296,17 +317,20 @@ const Home = ({
         <h2>Hi {window.localStorage.firstName}</h2>
         {inChallenge ? (
           <>
-            <h3>You're in the {selectedChallenge} Challenge</h3>
-            <h3>Time challenge</h3>
-            <h3>Unix time of challenge start {unixCreatedAt}</h3>
-            <h3>
-              Challenge Duration in Unix
-              {window.localStorage.duration * 86400}
-            </h3>
-            <h3>End time of Challenge in Unix {endTimeInUnix}</h3>
+            <div className="activities-list_div">
+              <h3>You're in the {selectedChallenge} Challenge</h3>
 
-            <h3>Date of challenge start {challengeCreatedAt}</h3>
+              <h3>Time elapsed in challenge: {timeElapsedDays} days</h3>
 
+              <h3>Duration left days: {durationLeftDays} days</h3>
+
+              <h3>Distance covered: {distanceCovered} km</h3>
+              <h3>STATE: challengeDistance {challengeDistance}</h3>
+              <h3>Distance remaining:{remainingDistanceKm}</h3>
+              <h3>End time of Challenge in Unix {endTimeInUnix}</h3>
+
+              <h3>Date of challenge start {challengeCreatedAt}</h3>
+            </div>
             <h2>Challenge Info</h2>
             {/* <h3>Challenge started at {challengeCreatedAt}</h3> */}
             <h3>Challege total distance {challengeDistance}</h3>

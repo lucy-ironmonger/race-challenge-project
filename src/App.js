@@ -34,18 +34,22 @@ const App = () => {
   const handleChallengeStart = (challenge, duration) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
     window.localStorage.setItem(IN_CHALLENGE, true);
-    setSelectedChallenge(challenge);
-    setChallengeDuration(duration);
     setInChallenge(true);
   };
 
   // WHEN YOU SELECT A CHALLENGE, IT SAVES STATE
-  const handleChallengeSelect = (challenge) => {
-    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
-    setSelectedChallenge(challenge);
+  const handleChallengeSelect = (
+    challengeName,
+    challengeDistance,
+    challengeDuration
+  ) => {
+    window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
+    setSelectedChallenge(challengeName);
     setChallengeDistance(challengeDistance);
     setChallengeDuration(challengeDuration);
-    console.log(`You've selected the ${challenge} challenge`);
+    console.log(
+      `Handle Challenge Select | You've selected the ${challengeName} challenge`
+    );
   };
 
   // CONFIRMS ALL THE MAIN INFO WHEN A CHALLENGE IS STARTED

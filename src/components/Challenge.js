@@ -20,10 +20,10 @@ const Challenge = ({
 
   //
 
-  useEffect(() => {
-    setChallengeDistance(challengeDistance);
-    setChallengeDuration(challengeDuration);
-  });
+  // useEffect(() => {
+  //   setChallengeDistance(challengeDistance);
+  //   setChallengeDuration(challengeDuration);
+  // });
 
   return (
     <div
@@ -47,7 +47,11 @@ const Challenge = ({
             className="select-challenges_button"
             onClick={() => {
               handleClick(challengeName);
-              handleChallengeSelect(challengeName);
+              handleChallengeSelect(
+                challengeName,
+                challengeDistance,
+                challengeDuration
+              );
             }}
           >
             Select Challenge

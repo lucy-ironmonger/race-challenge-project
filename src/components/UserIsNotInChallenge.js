@@ -36,6 +36,8 @@ const UserIsNotInChallenge = ({
       />
       <div className="start-challenges-container_other">
         <h1>{selectedChallenge}</h1>
+        <h1>Challenge Distance: {challengeDistance}</h1>
+        <h1>Challenge Duration: {challengeDuration}</h1>
       </div>
       <KmToMButton toggleIsOn={toggleIsOn} isOn={isOn} />
       <ChallengesList
