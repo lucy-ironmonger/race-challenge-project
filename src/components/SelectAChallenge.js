@@ -6,6 +6,8 @@ import Navbar from "./NavBar";
 import UserInChallenge from "./UserInChallenge";
 import UserIsNotInChallenge from "./UserIsNotInChallenge";
 
+// PARENT : APP
+
 const SelectAChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
@@ -17,6 +19,10 @@ const SelectAChallenge = ({
   inChallenge,
   setInChallenge,
   stravaId,
+  challengeDuration,
+  challengeDistance,
+  setChallengeDistance,
+  setChallengeDuration,
 }) => {
   const USER_DB_LINK = "http://localhost:4001/users";
   const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
@@ -26,19 +32,27 @@ const SelectAChallenge = ({
   const CHALLENGE_SELECTED = "challengeSelected";
   let IN_CHALLENGE = "inChallenge";
 
-  // CHECK IF USER IS IN A CHALLENGE AND SET STATE
-
+  // RUNS ON EVERY RENDER
+  // CHECKS IF THE USER IS ALREADY IN A CHALLENGE
+  // IF THEY ARE, IT FEEDS THEIR DATA TO HANDLE CHALLENGE START TO UPDATE STATE ON THE NAME, CREATEDAT, DISTANCE, DURATION
   useEffect(() => {
     const getRequestUserChallengeDb = async () => {
       await axios
         .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
         .then((res) => {
           if (res.status === 200) {
-            console.log("You're already in a challenge.", res.data);
-            handleChallengeStart(res.data.currentChallenge);
+            console.log(
+              `You're already in the ${selectedChallenge} challenge.`,
+              res.data
+            );
+            handleChallengeStart(
+              res.data.currentChallenge,
+              res.data.createdAt,
+              res.data.distance,
+              res.data.duration
+            );
           }
           if (res.status === 201) {
-            console.log("You ain't in a challenge mate. Join one!");
             setInChallenge(false);
             window.localStorage.setItem(IN_CHALLENGE, false);
           }
@@ -50,16 +64,24 @@ const SelectAChallenge = ({
     getRequestUserChallengeDb();
   });
 
-  // USER WANTS TO JOIN A CHALLENGE
+  // ADDS A USER TO JOIN A CHALLENGE
+  // DOESN'T NEED CREATED AT AS THIS IS ADDED ON MYSQL
+  // SENDS THE CHALLENGE NAME, DISTANCE AND DURATION TO THE DB
 
-  function postUserChallengeRequest(challengeName, challengeDistance) {
-    console.log(
-      "POST REQUEST postUserChallengeRequest to USERCHALLENGE | SELECT A CHALLENGE : New user challenge added to database"
-    );
+  function postUserChallengeRequest(
+    challengeName,
+    challengeDistance,
+    challengeDuration
+  ) {
+    console.log(`You've joined the ${challengeName} challenge!`);
+    setChallengeDistance();
     window.localStorage.setItem(IN_CHALLENGE, true);
     window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
+<<<<<<< HEAD
     window.localStorage.setItem(CHALLENGE_SELECTED, challengeDistance);
     console.log("Changed inChallenge on localStorage to true");
+=======
+>>>>>>> e5b7e6b3c5fbbb645270cf5471d95f4054f6cee7
 
     return axios({
       method: "post",
@@ -68,8 +90,8 @@ const SelectAChallenge = ({
         stravaId: STRAVA_ID,
         username: USER_NAME,
         currentChallenge: challengeName,
-        currentDistance: challengeDistance,
-        remainingDistance: challengeDistance,
+        distance: challengeDistance,
+        duration: challengeDuration,
       },
     })
       .then((res) => console.log(res))
@@ -78,28 +100,28 @@ const SelectAChallenge = ({
       });
   }
 
-  const handlePostUserChallengeRequest = (challengeName, challengeDistance) => {
-    if (window.localStorage.challengeSelected) {
-      console.log(
-        "START CHALLENGE BUTTON ONCLICK | FUNC handlePostUserChallengeRequest | SELECT A CHALLENGE"
-      );
-      postUserChallengeRequest(challengeName, challengeDistance);
-      setInChallenge(true);
-      setSelectedChallenge(challengeName);
-    }
-  };
+  // const postUserChallengeRequest = (
+  //   challengeName,
+  //   challengeDistance,
+  //   challengeDuration
+  // ) => {
+  //   if (window.localStorage.challengeSelected) {
+  //     console.log(
+  //       "START CHALLENGE BUTTON ONCLICK | FUNC postUserChallengeRequest | SELECT A CHALLENGE"
+  //     );
+  //     postUserChallengeRequest(
+  //       challengeName,
+  //       challengeDistance,
+  //       challengeDuration
+  //     );
+  //     setInChallenge(true);
+  //     setSelectedChallenge(challengeName);
+  //   }
+  // };
 
   return (
     <div>
       <Navbar />
-      {/* <UserInChallenge
-        selectedChallenge={selectedChallenge}
-        setSelectedChallenge={setSelectedChallenge}
-        inChallenge={inChallenge}
-        setInChallenge={setInChallenge}
-        stravaId={stravaId}
-      /> */}
-
       {inChallenge === true ? (
         <UserInChallenge
           selectedChallenge={selectedChallenge}
@@ -114,12 +136,16 @@ const SelectAChallenge = ({
           toggleIsOn={toggleIsOn}
           challengeData={challengeData}
           ConvertKmToM={ConvertKmToM}
-          handlePostUserChallengeRequest={handlePostUserChallengeRequest}
+          postUserChallengeRequest={postUserChallengeRequest}
           handleChallengeStart={handleChallengeStart}
           handleChallengeSelect={handleChallengeSelect}
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}
           setInChallenge={setInChallenge}
+          challengeDistance={challengeDistance}
+          challengeDuration={challengeDuration}
+          setChallengeDistance={setChallengeDistance}
+          setChallengeDuration={setChallengeDuration}
         />
       )}
     </div>
