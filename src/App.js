@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -8,47 +8,74 @@ import { getAccessToken } from "./tokenService";
 import SelectAChallenge from "./components/SelectAChallenge";
 import UseToggle from "./controllers/UseToggle";
 import challengeRawData from "./data/challengeRawData.js";
+import axios from "axios";
+import setUserChallengeDb from "./controllers/setUserChallengeDb";
 
 // APP COMPONENT
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [challengeData, setChallengeData] = useState(challengeRawData);
-  const [inChallenge, setInChallenge] = useState(false);
   const [isOn, toggleIsOn] = UseToggle();
   const [selectedChallenge, setSelectedChallenge] = useState("");
   const [unixCreatedAt, setUnixCreatedAt] = useState("");
   const [challengeCreatedAt, setChallengeCreatedAt] = useState("");
   const [challengeDistance, setChallengeDistance] = useState("");
   const [challengeDuration, setChallengeDuration] = useState(0);
+  const [activeChallenge, setActiveChallenge] = useState(null);
 
   const CHALLENGE_SELECTED = "challengeSelected";
   let IN_CHALLENGE = "inChallenge";
+  let STRAVA_ID = window.localStorage.stravaId;
+  const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
+  let USER_NAME = window.localStorage.username;
 
-  // CONVERTS DATE TO UNIX TIMESTAMP
   const dateCreatedInUnixTime = (createdAt) => {
     return new Date(createdAt).getTime();
   };
 
   // WHEN YOU HIT START CHALLENGE, IT SAVES STATE AND LOCALSTORAGE TO CONFIRM (INCASE OF REFRESH)
 
-  const handleChallengeStart = (challenge, duration) => {
-    window.localStorage.setItem(CHALLENGE_SELECTED, challenge);
+  // ORIGINAL VERSION
+  const handleChallengeStart = useCallback(() => {
+    // Is there anything SELECTED? If no don't do anything.
+    // If yes, set to active state
+    // Then write to DB
+    setActiveChallenge({
+      name: selectedChallenge,
+      distance: challengeDistance,
+      duration: challengeDuration,
+      createdAt: challengeCreatedAt,
+    });
+
+    console.log("hitting handleChallengeStart");
+
+    setUserChallengeDb(selectedChallenge, challengeDistance, challengeDuration);
+    window.localStorage.setItem(CHALLENGE_SELECTED, selectedChallenge);
     window.localStorage.setItem(IN_CHALLENGE, true);
-    setInChallenge(true);
-  };
+  }, [
+    IN_CHALLENGE,
+    challengeCreatedAt,
+    challengeDistance,
+    challengeDuration,
+    selectedChallenge,
+  ]);
+  // END OF ORIGINAL VERSION
 
   // WHEN YOU SELECT A CHALLENGE, IT SAVES STATE
+  // HAPPY WITH THIS
   const handleChallengeSelect = (
     challengeName,
     challengeDistance,
-    challengeDuration
+    challengeDuration,
+    createdAt
   ) => {
     window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
     setSelectedChallenge(challengeName);
     setChallengeDistance(challengeDistance);
     setChallengeDuration(challengeDuration);
+    setChallengeCreatedAt(createdAt);
     console.log(
-      `Handle Challenge Select | You've selected the ${challengeName} challenge`
+      `Handle Challenge Select | You've selected the ${challengeName} challenge, which is ${challengeDistance} long and ${challengeDuration} number of days.`
     );
   };
 
@@ -82,6 +109,35 @@ const App = () => {
     accessTokenCheck();
   }, []);
 
+  useEffect(() => {
+    const getRequestUserChallengeDb = async () => {
+      console.log("fired!");
+      await axios
+        .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(
+              `You're already in the ${activeChallenge} challenge.`,
+              res.data
+            );
+            handleChallengeSelect(
+              res.data.currentChallenge,
+              res.data.distance,
+              res.data.duration,
+              res.data.createdAt
+            );
+          }
+          if (res.status === 201) {
+            window.localStorage.setItem(IN_CHALLENGE, false);
+          }
+        })
+        .catch((error) => {
+          throw error;
+        });
+    };
+    getRequestUserChallengeDb();
+  }, [IN_CHALLENGE, STRAVA_ID, handleChallengeStart, activeChallenge]);
+
   return (
     <>
       <Router>
@@ -90,14 +146,13 @@ const App = () => {
             selectedChallenge={selectedChallenge}
             setSelectedChallenge={setSelectedChallenge}
             handleChallengeStart={handleChallengeStart}
-            inChallenge={inChallenge}
-            setInChallenge={setInChallenge}
             handleChallengeData={handleChallengeData}
             challengeCreatedAt={challengeCreatedAt}
             unixCreatedAt={unixCreatedAt}
             challengeDistance={challengeDistance}
             challengeDuration={challengeDuration}
             dateCreatedInUnixTime={dateCreatedInUnixTime}
+            activeChallenge={activeChallenge}
           />
         </Route>
         <Route path="/login" component={Login} />
@@ -124,12 +179,13 @@ const App = () => {
               handleChallengeStart={handleChallengeStart}
               handleChallengeSelect={handleChallengeSelect}
               challengeData={challengeData}
-              inChallenge={inChallenge}
-              setInChallenge={setInChallenge}
               challengeDuration={challengeDuration}
               setChallengeDuration={setChallengeDuration}
               challengeDistance={challengeDistance}
               setChallengeDistance={setChallengeDistance}
+              activeChallenge={activeChallenge}
+              setActiveChallenge={setActiveChallenge}
+              setUserChallengeDb={setUserChallengeDb}
             />
           )}
         />

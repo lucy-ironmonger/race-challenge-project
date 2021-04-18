@@ -16,13 +16,14 @@ const SelectAChallenge = ({
   toggleIsOn,
   isOn,
   challengeData,
-  inChallenge,
-  setInChallenge,
   stravaId,
   challengeDuration,
   challengeDistance,
   setChallengeDistance,
   setChallengeDuration,
+  activeChallenge,
+  setActiveChallenge,
+  setUserChallengeDb,
 }) => {
   const USER_DB_LINK = "http://localhost:4001/users";
   const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
@@ -35,101 +36,78 @@ const SelectAChallenge = ({
   // RUNS ON EVERY RENDER
   // CHECKS IF THE USER IS ALREADY IN A CHALLENGE
   // IF THEY ARE, IT FEEDS THEIR DATA TO HANDLE CHALLENGE START TO UPDATE STATE ON THE NAME, CREATEDAT, DISTANCE, DURATION
-  useEffect(() => {
-    const getRequestUserChallengeDb = async () => {
-      await axios
-        .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(
-              `You're already in the ${selectedChallenge} challenge.`,
-              res.data
-            );
-            handleChallengeStart(
-              res.data.currentChallenge,
-              res.data.createdAt,
-              res.data.distance,
-              res.data.duration
-            );
-          }
-          if (res.status === 201) {
-            setInChallenge(false);
-            window.localStorage.setItem(IN_CHALLENGE, false);
-          }
-        })
-        .catch((error) => {
-          throw error;
-        });
-    };
-    getRequestUserChallengeDb();
-  });
+  // useEffect(() => {
+  //   const getRequestUserChallengeDb = async () => {
+  //     console.log("fired!");
+  //     await axios
+  //       .get(`${USER_CHALLENGE_DB_LINK}/${STRAVA_ID}`)
+  //       .then((res) => {
+  //         if (res.status === 200) {
+  //           console.log(
+  //             `You're already in the ${selectedChallenge} challenge.`,
+  //             res.data
+  //           );
+  //           handleChallengeSelect(
+  //             res.data.currentChallenge,
+  //             res.data.distance,
+  //             res.data.duration,
+  //             res.data.createdAt
+  //           );
+  //         }
+  //         if (res.status === 201) {
+  //           window.localStorage.setItem(IN_CHALLENGE, false);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         throw error;
+  //       });
+  //   };
+  //   getRequestUserChallengeDb();
+  // }, [IN_CHALLENGE, STRAVA_ID, handleChallengeStart, activeChallenge]);
 
   // ADDS A USER TO JOIN A CHALLENGE
   // DOESN'T NEED CREATED AT AS THIS IS ADDED ON MYSQL
   // SENDS THE CHALLENGE NAME, DISTANCE AND DURATION TO THE DB
 
-  function postUserChallengeRequest(
-    challengeName,
-    challengeDistance,
-    challengeDuration
-  ) {
-    console.log(
-      `postUserChall | You've joined the ${challengeName} challenge!`
-    );
-    window.localStorage.setItem(IN_CHALLENGE, true);
-    window.localStorage.setItem(CHALLENGE_SELECTED, challengeName);
-<<<<<<< HEAD
-    window.localStorage.setItem(CHALLENGE_SELECTED, challengeDistance);
-    console.log("Changed inChallenge on localStorage to true");
-=======
->>>>>>> e5b7e6b3c5fbbb645270cf5471d95f4054f6cee7
-
-    return axios({
-      method: "post",
-      url: USER_CHALLENGE_DB_LINK,
-      data: {
-        stravaId: STRAVA_ID,
-        username: USER_NAME,
-        currentChallenge: challengeName,
-        distance: challengeDistance,
-        duration: challengeDuration,
-      },
-    })
-      .then((res) => console.log(res))
-      .catch((error) => {
-        throw error;
-      });
-  }
-
-  // const postUserChallengeRequest = (
-  //   challengeName,
+  // function setUserChallengeDb(
+  //   selectedChallenge,
   //   challengeDistance,
   //   challengeDuration
-  // ) => {
-  //   if (window.localStorage.challengeSelected) {
-  //     console.log(
-  //       "START CHALLENGE BUTTON ONCLICK | FUNC postUserChallengeRequest | SELECT A CHALLENGE"
-  //     );
-  //     postUserChallengeRequest(
-  //       challengeName,
-  //       challengeDistance,
-  //       challengeDuration
-  //     );
-  //     setInChallenge(true);
-  //     setSelectedChallenge(challengeName);
-  //   }
-  // };
+  // ) {
+  //   console.log(
+  //     `postUserChall | You've joined the ${selectedChallenge} challenge!`
+  //   );
+  //   window.localStorage.setItem(IN_CHALLENGE, true);
+  //   window.localStorage.setItem(CHALLENGE_SELECTED, selectedChallenge);
+
+  //   return axios({
+  //     method: "post",
+  //     url: USER_CHALLENGE_DB_LINK,
+  //     data: {
+  //       stravaId: STRAVA_ID,
+  //       username: USER_NAME,
+  //       currentChallenge: selectedChallenge,
+  //       distance: challengeDistance,
+  //       duration: challengeDuration,
+  //     },
+  //   })
+  //     .then((res) => console.log(res))
+  //     .catch((error) => {
+  //       throw error;
+  //     });
+  // }
 
   return (
     <div>
       <Navbar />
-      {inChallenge === true ? (
+
+      {activeChallenge ? (
         <UserInChallenge
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}
-          inChallenge={inChallenge}
-          setInChallenge={setInChallenge}
           stravaId={stravaId}
+          activeChallenge={activeChallenge}
+          setActiveChallenge={setActiveChallenge}
         />
       ) : (
         <UserIsNotInChallenge
@@ -137,16 +115,17 @@ const SelectAChallenge = ({
           toggleIsOn={toggleIsOn}
           challengeData={challengeData}
           ConvertKmToM={ConvertKmToM}
-          postUserChallengeRequest={postUserChallengeRequest}
+          setUserChallengeDb={setUserChallengeDb}
           handleChallengeStart={handleChallengeStart}
           handleChallengeSelect={handleChallengeSelect}
           selectedChallenge={selectedChallenge}
           setSelectedChallenge={setSelectedChallenge}
-          setInChallenge={setInChallenge}
           challengeDistance={challengeDistance}
           challengeDuration={challengeDuration}
           setChallengeDistance={setChallengeDistance}
           setChallengeDuration={setChallengeDuration}
+          activeChallenge={activeChallenge}
+          setActiveChallenge={setActiveChallenge}
         />
       )}
     </div>

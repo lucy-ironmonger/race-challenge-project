@@ -9,8 +9,8 @@ import ViewStatsButton from "./Buttons/ViewStatsButton";
 const UserInChallenge = ({
   selectedChallenge,
   setSelectedChallenge,
-  setInChallenge,
-  inChallenge,
+  setActiveChallenge,
+  activeChallenge,
 }) => {
   const USER_CHALLENGE_DB_LINK = "http://localhost:4001/userchallenge";
   let STRAVA_ID = window.localStorage.stravaId;
@@ -20,7 +20,7 @@ const UserInChallenge = ({
   // HOW TO END THE CHALLENGE
   function endChallenge() {
     console.log("Goodbye challenge, we hardly knew you.");
-    setInChallenge(false);
+    setActiveChallenge(null);
     setSelectedChallenge("");
     window.localStorage.setItem(IN_CHALLENGE, false);
     window.localStorage.setItem(CHALLENGE_SELECTED, null);
@@ -36,7 +36,8 @@ const UserInChallenge = ({
     <>
       <div className="page_container">
         <h2>You're in the</h2>
-        <h2>{selectedChallenge} Challenge</h2>
+        <h2>{activeChallenge.name} Challenge</h2>
+        <h2>Distance: {activeChallenge.distance}</h2>
         <h3 className="start-challenge_legend">What a legend. Keep going!</h3>
       </div>
       <div>

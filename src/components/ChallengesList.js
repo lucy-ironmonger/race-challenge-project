@@ -6,7 +6,7 @@ import Challenge from "./Challenge";
 const ChallengesList = ({
   ConvertKmToM,
   onChallengeSelect,
-  postUserChallengeRequest,
+  setUserChallengeDb,
   isOn,
   selectedChallenge,
   challengeData,
@@ -31,7 +31,7 @@ const ChallengesList = ({
             key={challenge.challengeName}
             onChallengeSelect={onChallengeSelect}
             convertKmToM={ConvertKmToM}
-            postUserChallengeRequest={postUserChallengeRequest}
+            setUserChallengeDb={setUserChallengeDb}
             isOn={isOn}
             selectedChallenge={selectedChallenge}
             handleChallengeSelect={handleChallengeSelect}

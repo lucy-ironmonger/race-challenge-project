@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+// PARENT : CHALLENGE LIST
+
 const Challenge = ({
   challengeName,
   challengeDistance,
@@ -7,7 +9,7 @@ const Challenge = ({
   handleChallengeSelect,
   convertKmToM,
   isOn,
-  postUserChallengeRequest,
+  setUserChallengeDb,
   inChallenge,
   selectedChallenge,
   setChallengeDistance,

@@ -10,11 +10,11 @@ const UserIsNotInChallenge = ({
   isOn,
   challengeData,
   ConvertKmToM,
-  postUserChallengeRequest,
+  setUserChallengeDb,
   handleChallengeStart,
   handleChallengeSelect,
   setSelectedChallenge,
-  setInChallenge,
+
   selectedChallenge,
   challengeDistance,
   challengeDuration,
@@ -27,12 +27,12 @@ const UserIsNotInChallenge = ({
         <h1>Time for a new challenge? Select one, then double click to...</h1>
       </div>
       <StartChallengeButton
-        postUserChallengeRequest={postUserChallengeRequest}
+        setUserChallengeDb={setUserChallengeDb}
         setSelectedChallenge={setSelectedChallenge}
-        setInChallenge={setInChallenge}
         selectedChallenge={selectedChallenge}
         challengeDistance={challengeDistance}
         challengeDuration={challengeDuration}
+        handleChallengeStart={handleChallengeStart}
       />
       <div className="start-challenges-container_other">
         <h1>{selectedChallenge}</h1>
@@ -43,7 +43,7 @@ const UserIsNotInChallenge = ({
       <ChallengesList
         challengeData={challengeData}
         ConvertKmToM={ConvertKmToM}
-        postUserChallengeRequest={postUserChallengeRequest}
+        setUserChallengeDb={setUserChallengeDb}
         handleChallengeSelect={handleChallengeSelect}
         isOn={isOn}
         selectedChallenge={selectedChallenge}

@@ -3,24 +3,10 @@ import "../../styles/ChallengeButton.scss";
 
 // PARENT: USER IS NOT IN CHALLENGE
 
-const StartChallengeButton = ({
-  postUserChallengeRequest,
-  selectedChallenge,
-  challengeDistance,
-  challengeDuration,
-}) => {
+const StartChallengeButton = ({ handleChallengeStart }) => {
   return (
     <div className="start-challenges_button_container">
-      <div
-        className="start-challenges_button"
-        onClick={() =>
-          postUserChallengeRequest(
-            selectedChallenge,
-            challengeDistance,
-            challengeDuration
-          )
-        }
-      >
+      <div className="start-challenges_button" onClick={handleChallengeStart}>
         Start New Challenge! 🚀
       </div>
     </div>

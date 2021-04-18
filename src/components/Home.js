@@ -32,8 +32,6 @@ const Home = ({
   handleChallengeStart,
   selectedChallenge,
   setSelectedChallenge,
-  inChallenge,
-  setInChallenge,
   handleChallengeData,
   challengeCreatedAt,
   unixCreatedAt,
@@ -41,6 +39,7 @@ const Home = ({
   challengeDuration,
   setChallengeDuration,
   dateCreatedInUnixTime,
+  activeChallenge,
 }) => {
   // CHECK IF USER IS IN A CHALLENGE AND SET STATE
 
@@ -299,7 +298,6 @@ const Home = ({
             handleChallengeData(res.data.createdAt, res.data.currentDistance);
           }
           if (res.status === 201) {
-            setInChallenge(false);
             window.localStorage.setItem(IN_CHALLENGE, false);
           }
         })
@@ -308,18 +306,18 @@ const Home = ({
         });
     };
     getRequestUserChallengeDb();
-  }, []);
+  }, [handleChallengeData, handleChallengeStart, setSelectedChallenge]);
 
   return (
     <>
       <Navbar />
       <div className="page_container">
         <h2>Hi {window.localStorage.firstName}</h2>
-        {inChallenge ? (
+        {activeChallenge ? (
           <>
             <div className="activities-list_div">
-              <h3>You're in the {selectedChallenge} Challenge</h3>
-
+              <h3>You're in the {activeChallenge.name} Challenge</h3>
+              {/* 
               <h3>Time elapsed in challenge: {timeElapsedDays} days</h3>
 
               <h3>Duration left days: {durationLeftDays} days</h3>
@@ -333,6 +331,7 @@ const Home = ({
             </div>
             <h2>Challenge Info</h2>
             {/* <h3>Challenge started at {challengeCreatedAt}</h3> */}
+            </div>
             <h3>Challege total distance {challengeDistance}</h3>
             <h1>Your Challenge Info</h1>
             <h3>!! Distance run so far !!</h3>
